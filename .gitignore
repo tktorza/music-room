@@ -1,0 +1,10 @@
+.DS_Store
+client/node_modules
+server/node_modules
+npm-debug.log
+dist
+coverage
+doc
+jobs/config.js
+yarn.lock
+test.csv
