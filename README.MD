@@ -3,13 +3,13 @@
 * client => React Native
 
 # Start
-* cd server && yarn && yarn start-dev (don't forget to start mongoDB)
+* ```cd server && yarn && yarn start-dev``` (don't forget to start mongoDB)
 
 # Documentation
-* yarn doc && open doc/index.html
+* ```yarn doc && open doc/index.html```
 # Lint
 * lint before push
-* yarn lint
+* ```yarn lint```
 
 ## client
 * all as to be done
