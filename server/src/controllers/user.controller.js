@@ -39,6 +39,7 @@ export default class UserController {
       })
       user.generateHash(params.password)
       user.save(err => {
+        console.log(err)
         if (err) { return res.status(500).send({ message: 'internal serveur error' }) }
         const token = generateToken(user)
         return res.json({ token })

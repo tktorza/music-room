@@ -1,66 +1,42 @@
 import React, { Component } from 'react'
-import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
 import { View, TextInput, Text, Button } from 'react-native-ui-lib'
+import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
+import Menu from './menu.js'
+import { getPlayList } from '../../actions/playlist.js'
+import { toJS } from 'immutable'
 
-class Login extends Component {
+class Home extends Component {
 
+  state = {
+    mode: 0,
+  }
 
-  renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-    <TextInput text50 placeholder={label} dark10 {...input} {...custom}/>
-  )
+  getPlayList = () => { this.setState({ mode: 1 }); this.props.dispatch(getPlayList(this.props.user.id)) }
+  render () {
 
-  onSubmit = event => {
-    console.log('Event =>',event);
-
-   }
-
-  render() {
-    console.log('TA MERE');
-
-    const { handleSubmit } = this.props
-
+    const { handleSubmit, user } = this.props
     return (
-      <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <Field
-      label={'Email'}
-      name={'email'}
-      component={this.renderTextField}
-      />
-      <Field
-      label={'Password'}
-      name={'password'}
-      component={this.renderTextField}
-      />
-      <Button onPress={handleSubmit(this.onSubmit)} label='Login' />
-      </ScrollView>
-    );
+      <View>
+        <Text>{'In the home'}</Text>
+        <Button onPress={() => {
+          console.log('test')
+        }}/>
+        <Menu getPlayList={this.getPlayList}/>
+      </View>
+    )
   }
 }
 
-const validate = values => {
-  const errors = {}
-  const requiredFields = ['email', 'password']
-
-  requiredFields.forEach(field => { if (!values[field]) { errors[field] = 'Required' } })
-
-  return errors
-}
-
-
-Login = reduxForm({
-  form: 'loginForm',
-  validate,
-})(Login)
-
 const mapStateToProps = state => {
-  return { state }
+
+  return {
+    user: state.user.toJS(),
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return { dispatch }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

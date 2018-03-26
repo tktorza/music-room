@@ -14,6 +14,7 @@ export function generateToken (user) {
     role: user.role,
     firstName: user.firstName,
     lastName: user.lastName,
+    id: user._id,
   }
   let expiresIn = 60 * 60 * 24 // 24 hours
   if (process.env.NODE_ENV !== 'production') {

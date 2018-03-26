@@ -50,6 +50,24 @@ export default class PlaylistController {
     })
   }
 
+  // TODO A CHANGER DE OUF
+  static getPlaylistByAll (req, res) {
+
+    Playlist.find().then(playLists => {
+
+      const arrayToSend = []
+      playLists.forEach(playList => {
+
+        playList.users.forEach(u => {
+          if (u.id === req.params.userId) { arrayToSend.push(playList) }
+        })
+      })
+      return res.json({ message: 'Your playLists', playLists: arrayToSend8 }) /* istanbul ignore next */
+    }).catch(() => {
+      return res.status(500).send({ message: 'Internal serveur error' })
+    })
+  }
+
   static updatePublic (req, res) {
     const params = filter(req.body, updateParamsPublic)
 

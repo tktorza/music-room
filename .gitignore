@@ -1,5 +1,7 @@
 .DS_Store
-clientV1/node_modules
+clientV0/node_modules
+clientV0/android
+clientV0/ios
 server/node_modules
 npm-debug.log
 dist

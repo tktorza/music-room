@@ -31,11 +31,34 @@ export default [
   },
 
   /**
+  * @api {Get} /playlist/all/:userId get a playList
+  * @apiName PlaylistController
+  * @apiGroup getPlaylistByName
+  *
+  * @apiDescription get all the playList
+  *
+  * @apiParam {String} userId  userId
+  *
+  * @apiSuccess {Object} Playlist information
+  * @apiSuccess {String} message success message
+  *
+  * @apiError (Bad Request 403 userId is invalid) {String} message Return if user are not allowed to access this playList
+  *
+  */
+
+  {
+    method: 'GET',
+    path: '/playlist/all/:userId',
+    handler: PlaylistController.getPlaylistAll,
+    validator: [isLogin],
+  },
+
+  /**
   * @api {Get} /playlist/:name/:userId get a playList
   * @apiName PlaylistController
   * @apiGroup getPlaylistByName
   *
-  * @apiDescription get the information of a user
+  * @apiDescription get a playList by name
   *
   * @apiParam {String} name  name
   * @apiParam {String} userId  userId

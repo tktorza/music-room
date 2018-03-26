@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable'
 
+import { login } from './user/index.js'
 const intialStateUser = {
   firstName: '',
   lastName: '',
@@ -13,8 +14,6 @@ const intialStateUser = {
   language: '',
   funds: [],
 }
-
-
 
 export default class reducer {
 
@@ -36,8 +35,5 @@ export default class reducer {
       return state
     }
   }
-
-
-
 
 }
