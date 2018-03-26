@@ -48,17 +48,11 @@
     "all": true
   },
   "apidoc": {
-    "name": "Gringx1x API Documentation",
+    "name": "Music-room API Documentation",
     "version": "0.0.0",
-    "title": "Gringox API Documentation",
+    "title": "Music-room API Documentation",
     "description": ""
   },
-  "apidoc": {
-  "name": "Music-room API Documentation",
-  "version": "0.0.0",
-  "title": "Music-room API Documentation",
-  "description": ""
-},
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.0",

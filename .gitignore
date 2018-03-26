@@ -1,5 +1,5 @@
 .DS_Store
-client/node_modules
+clientV1/node_modules
 server/node_modules
 npm-debug.log
 dist
