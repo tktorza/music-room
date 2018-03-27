@@ -14,6 +14,7 @@
 ## client
 * react-native upgrade.
 * react-native run-ios --simulator="iPhone 6".
+* react-native link.
 * Be patient.
 * GO!
 
