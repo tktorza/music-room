@@ -12,7 +12,9 @@
 * ```yarn lint```
 
 ## client
-* all as to be done
+* react-native upgrade
+* react-native run-ios --simulator="iPhone 6"
+* GO!
 
 ## server
 * set up done just need to add feature
