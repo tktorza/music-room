@@ -1,20 +1,13 @@
 import { fromJS } from 'immutable'
 import jwtDecode from 'jwt-decode'
-import CookieManager from 'react-native-cookies'
+import { Actions } from 'react-native-router-flux'
+
 
 export function login (state, data) {
-  const result = new Date()
-  CookieManager.set({
-    name: 'tokenJWT',
-    value: data.token,
-    domain: 'musicroom',
-    origin: 'api-musicroom',
-    path: '/',
-    version: '1',
-    expiration: result.setDate(result.getDate() + 7),
-  }).then((res) => { console.log('CookieManager.set =>', res) })
 
   const user = jwtDecode(data.token)
+  Expo.SecureStore.setItemAsync('token',data.token, {})
+  Actions.home()
   return state.setIn(['email'], fromJS(user.email))
     .setIn(['isAuthenticated'], fromJS(true))
     .setIn(['role'], fromJS(user.role))

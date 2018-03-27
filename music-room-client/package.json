@@ -1,12 +1,6 @@
 {
-  "name": "clientV0",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "babel-preset-react-native-stage-0": "^1.0.1",
-    "jest-react-native": "^18.0.0",
-    "react-test-renderer": "16.2.0"
-  },
+  "name": "music-room-client",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
@@ -19,10 +13,9 @@
       "zavatta"
     ],
     "plugins": [
-   "react",
-   "react-native"
- ],
-
+      "react",
+      "react-native"
+    ],
     "rules": {
       "no-sync": 0,
       "no-undef": 0,
@@ -32,21 +25,22 @@
       "max-nested-callbacks": 0,
       "max-statements-per-line": 0,
       "no-unused-vars": 0,
-       "no-class-assign": 0
-
+      "no-class-assign": 0
     }
   },
   "jest": {
     "preset": "react-native"
   },
+  "private": true,
   "dependencies": {
+    "babel-preset-expo": "^4.0.0",
     "eslint": "^4.19.1",
     "eslint-config-zavatta": "^6.0.2",
+    "expo": "^25.0.0",
     "immutable": "^3.8.2",
     "jwt-decode": "^2.2.0",
     "react": "16.2.0",
-    "react-native": "0.52.0",
-    "react-native-cookies": "^3.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-router-flux": "^4.0.0-beta.28",
     "react-native-ui-lib": "^3.3.35",
     "react-redux": "^5.0.7",

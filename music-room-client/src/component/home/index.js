@@ -12,17 +12,34 @@ class Home extends Component {
     mode: 0,
   }
 
-  getPlayList = () => { this.setState({ mode: 1 }); this.props.dispatch(getPlayList(this.props.user.id)) }
+  serviceMode = () => { this.setState({ mode: 0 }) }
+  playListMode = () => { this.setState({ mode: 1}) }// this.props.dispatch(getPlayList(this.props.user.id)) }
+  settingsMode= () => { this.setState({ mode: 2 }) }
   render () {
 
     const { handleSubmit, user } = this.props
+    const { mode } = this.state
     return (
-      <View>
-        <Text>{'In the home'}</Text>
-        <Button onPress={() => {
-          console.log('test')
-        }}/>
-        <Menu getPlayList={this.getPlayList}/>
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+
+
+    {mode === 0 && (
+      <Text>{mode}</Text>
+    )}
+    {mode === 1 && (
+      <Text>{mode}</Text>
+    )}
+    {mode === 2 && (
+      <Text>{mode}</Text>
+    )}
+
+
+        <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />
       </View>
     )
   }

@@ -5,16 +5,16 @@ import { StyleSheet } from 'react-native'
 class Menu extends Component {
 
   render () {
-    const { getPlayList } = this.props
+    const { playListMode, serviceMode, settingsMode } = this.props
 
     return (
       <ActionBar
         containerStyle={[styles.absoluteContainer]}
         backgroundColor={'orange'}
         actions={[
-          { label: 'Services', onPress: () => alert('hide'), white: true },
-          { label: 'Your playlist', onPress: () => getPlayList(), white: true },
-          { label: 'setings', onPress: () => alert('duplicate'), white: true },
+          { label: 'Services', onPress: () => serviceMode(), white: true },
+          { label: 'Your playlist', onPress: () => playListMode(), white: true },
+          { label: 'setings', onPress: () => settingsMode(), white: true },
         ]}
       />
     )

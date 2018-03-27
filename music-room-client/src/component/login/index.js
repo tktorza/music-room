@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
 import { loginUser } from '../../actions/user.js'
+import FacebookLogin from './facebookLogin.js'
 class Login extends Component {
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
@@ -19,7 +20,6 @@ class Login extends Component {
   }
 
   render () {
-    console.log('TA MERE')
 
     const { handleSubmit } = this.props
 
@@ -38,6 +38,7 @@ class Login extends Component {
         />
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Login' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.singup() }} label='Singup' />
+        <FacebookLogin  />
       </View>
     )
   }

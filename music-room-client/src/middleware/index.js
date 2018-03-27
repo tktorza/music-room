@@ -1,5 +1,4 @@
 import { toJs } from 'immutable'
-import CookieManager from 'react-native-cookies'
 import { Actions } from 'react-native-router-flux'
 
 function connection (data) {
@@ -21,15 +20,17 @@ const simpleMiddleWare = socket => ({ dispatch, getState }) => {
 
   return next => action => {
 
-    CookieManager.getAll().then((res) => {
-      if (res.tokenJWT) {
+    Expo.SecureStore.getItemAsync('token', {}).then(res => {
+      console.log(res);
+      if (res) {
+        console.log('ici');
         Actions.home()
       } else if (Actions.currentScene === 'home') {
         Actions.login()
       }
       return next(action)
-
     })
+
   }
 
 }

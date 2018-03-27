@@ -6,7 +6,7 @@ import simpleMiddleWare from './src/middleware/index.js'
 import thunk from 'redux-thunk'
 import reducer from './src/reducers'
 import { reducer as formReducer } from 'redux-form'
-import { Router, Scene } from 'react-native-router-flux'
+import { Router, Scene, Stack } from 'react-native-router-flux'
 import Home from './src/component/home/index'
 import Login from './src/component/login'
 import Singup from './src/component/singup'
@@ -26,25 +26,18 @@ const configureStore = (reducer) => createStore(
 
 const store =  configureStore(reducer)
 
-import CookieManager from 'react-native-cookies';
-
-
-// CookieManager.clearAll()
-//   .then((res) => {
-//     console.log('CookieManager.clearAll =>', res);
-//   });
-
-CookieManager.getAll().then((res) => {
-    console.log('CookieManager.getAll =>', res);
-
-  });
+Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
+  console.log('del token');
+})
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <Scene key="root">
+        <Stack
+       hideNavBar
+       key="root">
             <Scene key="login"
             component={Login}
             title="Login"
@@ -57,9 +50,8 @@ class App extends Component {
             <Scene key="home"
             component={Home}
             title="home"
-            initial
             />
-          </Scene>
+          </Stack>
         </Router>
       </Provider>
     );
