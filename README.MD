@@ -12,8 +12,6 @@
 * ```yarn lint```
 
 ## client
-* ```react-native upgrade```.
-* ```react-native link```.
 * ```react-native run-ios --simulator="iPhone 6"```.
 * Be patient.
 * GO!
