@@ -14,7 +14,6 @@ class Login extends Component {
 
   onSubmit = event => {
 
-    console.log('Event =>', event)
     this.props.dispatch(loginUser(event))
     //  Actions.home()
   }

@@ -7,17 +7,23 @@ import Playlist from './playlist.js'
 import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
 
-
 class Home extends Component {
 
+
+componentWillMount() {
+  Expo.SecureStore.getItemAsync('token', {}).then(token => {
+  this.props.dispatch({
+      type: 'client/verifeUser',
+      data: token,
+    })
+  })
+}
   state = {
     mode: 0,
   }
 
   serviceMode = () => { this.setState({ mode: 0 }) }
-  playListMode = () => { this.setState({ mode: 1});
-
-  this.props.dispatch(getPlayList(this.props.user.id)) }
+  playListMode = () => { this.setState({ mode: 1}); this.props.dispatch(getPlayList(this.props.user.id)) }
   settingsMode= () => { this.setState({ mode: 2 }) }
   render () {
 
@@ -36,7 +42,7 @@ class Home extends Component {
       <Text>{mode}</Text>
     )}
     {mode === 1 && (
-        <Playlist  playlist={playlist}/>
+        <Playlist  playlist={playlist} user={user}/>
     )}
     {mode === 2 && (
       <Text>{mode}</Text>

@@ -98,9 +98,18 @@ export default [
 
   {
     method: 'POST',
-    path: '/playlist/update/:name/:userId',
+    path: '/playlist/update/:playListId/:userId',
     handler: PlaylistController.updatePublic,
     validator: [isLogin],
   },
 
+/**
+nIqUE LA DocC
+**/
+  {
+    method: 'PUT',
+    path: '/playlist/update/:playListId/:userId/:newId',
+    handler: PlaylistController.addMusicToList,
+    validator: [isLogin],
+  },
 ]

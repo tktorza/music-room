@@ -29,6 +29,7 @@ const simpleMiddleWare = socket => ({ dispatch, getState }) => {
     Expo.SecureStore.getItemAsync('token', {}).then(token => {
       if (token && (Actions.currentScene === 'login' || Actions.currentScene === 'singup')) {
         const userState = getState().user.toJS()
+
         if (userState.id === '') { dispatch(verifeUser(token)) }
         Actions.home()
       }

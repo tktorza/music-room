@@ -48,6 +48,8 @@ export default class reducer {
       return setListOfPlaylist(state, action.data)
     case 'http/newPlayList':
       return updateListOfplayList(state, action.data)
+    case 'http/addSongPlayList':
+      return addSongPlaylist(state, action.data)
     default:
       return state
     }

@@ -22,7 +22,6 @@ class NewPlaylist extends Component {
 
   onSubmit = event => {
 
-    console.log('Event =>', event)
     event.users = []
     event.users.push(this.props.user)
      this.props.dispatch(createPlayList(event))

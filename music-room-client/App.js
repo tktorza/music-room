@@ -11,6 +11,7 @@ import Home from './src/component/home/index'
 import NewPlaylist from './src/component/home/newplaylist.js'
 import Login from './src/component/login'
 import Singup from './src/component/singup'
+import EditPlaylist from './src/component/home/editplaylist.js'
 
 
 const configureStore = (reducer) => createStore(
@@ -57,7 +58,12 @@ class App extends Component {
             key='newplaylist'
             component={NewPlaylist}
             hideNavBar={false}
-            title='New trak'
+            title='New track'
+            />
+            <Scene key='editplaylist'
+            component={EditPlaylist}
+            hideNavBar={false}
+            title='Edit track'
             />
           </Stack>
         </Router>

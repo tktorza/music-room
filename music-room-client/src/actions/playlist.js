@@ -4,12 +4,13 @@ import { callApi } from '../utils/callApi.js'
 export function getPlayList (userId) {
   return dispatch => {
     callApi(`playlist/all/${userId}/`, 'get').then(body => {
+      console.log('getPlayListall />',body);
       dispatch({
         type: 'http/getAllplayList',
         data: body,
       })
     }).catch(e => {
-      console.log(e)
+      console.log('err get play list =>',e)
     })
   }
 }
@@ -22,7 +23,25 @@ export function createPlayList (data) {
         data: body,
       })
     }).catch(e => {
-      console.log(e);
+      console.log('err creact play list => ',e);
+    })
+  }
+}
+
+export function addSongPlaylist(id, playlistId, userId) {
+
+  console.log(id);
+  console.log(playlistId);
+  console.log(userId);
+  return dispatch => {
+    callApi(`playlist/update/${playlistId}/${userId}/${id}`, 'put').then(body => {
+      console.log('res de body =>',body);
+      dispatch({
+        type: 'http/addSongPlayList',
+        data: {body, playlistId},
+      })
+    }).catch(e => {
+      console.log('er sur addsong =>',e);
     })
   }
 }

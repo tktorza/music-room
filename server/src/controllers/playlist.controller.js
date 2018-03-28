@@ -70,22 +70,47 @@ export default class PlaylistController {
     })
   }
 
+
   static updatePublic (req, res) {
     const params = filter(req.body, updateParamsPublic)
 
-    Playlist.findOne({ name: req.params.name }).then(playList => {
+    Playlist.findOne({ _id: req.paramsplayListId }).then(playList => {
 
       let test = false
       playList.users.forEach(u => {
-        if (u.id === req.params.userId && u.role === 0) {
+        if (u.id === req.params.userId) {
           test = true
         }
       })
       if (!test) { return res.status(403).send({ message: 'You are not allowed to access this playList' }) }
 
-      Playlist.findOneAndUpdate({ name: req.params.name }, { $set: params }, { new: true }).then(playList => {
+      Playlist.findOneAndUpdate({  _id: req.paramsplayListId }, { $set: params }, { new: true }).then(playList => {
         return res.json({ message: 'Your playList', playList })
       }).catch(() => {
+        return res.status(500).send({ message: 'Internal serveur error' })
+      })
+    })
+  }
+
+  static addMusicToList (req, res) {
+
+    Playlist.findOne({ _id: req.params.playListId }).then(playList => {
+      if(!playList) { return res.status(404).send({ message: 'No playList find' }) }
+      let test = false
+      playList.users.forEach(u => {
+        if (u.id === req.params.userId) {
+          test = true
+        }
+      })
+      if (!test) { return res.status(403).send({ message: 'You are not allowed to access this playList' }) }
+
+      let songs = playList.songs
+      songs.push(req.params.newId)
+      Playlist.findOneAndUpdate({  _id: req.params.playListId }, { $set: { songs: songs} }, { new: true }).then(playList => {
+        console.log('playList =>',playList);
+        return res.json({ message: 'Your playList', playlist: playList })
+      }).catch((e) => {
+        console.log(e);
         return res.status(500).send({ message: 'Internal serveur error' })
       })
     })

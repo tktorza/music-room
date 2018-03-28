@@ -12,9 +12,8 @@ class Playlist extends Component {
   }
 
   render () {
-    const { playlist } = this.props
+    const { playlist, user } = this.props
     const cardStyle = { margin: 15, width: 280 }
-    console.log('Playlist => ',playlist);
     return (
       <View style={{
         flex: 1,
@@ -31,7 +30,7 @@ class Playlist extends Component {
           image='https://image.freepik.com/icones-gratuites/itunes-logo-de-la-note-amusical-interieur-d-39-un-cercle_318-50208.jpg'
           style={cardStyle}
         />
-        <Button label="test" onPress={() => { console.log('ooooo'); Actions.newplaylist(test: 'test')}}  />
+        <Button label="Add song" onPress={() => { Actions.editplaylist({playlistId: p._id, userId: user.id})}}  />
         </View>
       )
           })
