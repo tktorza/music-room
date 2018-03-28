@@ -8,25 +8,23 @@ export default class PlaylistController {
   static create (req, res) {
 
     const params = filter(req.body, createParams)
-
     if (!params || !params.name) { return res.status(401).send({ message: 'Messing parameters.' }) }
 
-    Playlist.findOne({ name }).then(u => {
+    Playlist.findOne({ name: params.name }).then(u => {
       if (u) { return res.status(400).send({ message: 'An playList already exist with this name.' }) }
 
       const playList = new Playlist({
-        name: params.email,
+        name: params.name,
         description: params.description,
         type: params.type,
         users: params.users,
-        songs: params.songs,
       })
 
       playList.save(err => {
         if (err) { return res.status(500).send({ message: 'internal serveur error' }) }
-        return res.json({ message: 'Your playList', playList })
+        return res.json({ message: 'Your playList', playlist: playList })
       })
-    }).catch(() => {
+    }).catch((e) => {
       return res.status(500).send({ message: 'Internal serveur error' })
     })
   }
@@ -51,10 +49,12 @@ export default class PlaylistController {
   }
 
   // TODO A CHANGER DE OUF
-  static getPlaylistByAll (req, res) {
+  static getPlaylistAll (req, res) {
 
+    console.log(req.params.userId);
     Playlist.find().then(playLists => {
 
+      console.log(require('util').inspect(playLists, { depth: null }));
       const arrayToSend = []
       playLists.forEach(playList => {
 
@@ -62,8 +62,10 @@ export default class PlaylistController {
           if (u.id === req.params.userId) { arrayToSend.push(playList) }
         })
       })
-      return res.json({ message: 'Your playLists', playLists: arrayToSend8 }) /* istanbul ignore next */
-    }).catch(() => {
+      console.log(arrayToSend);
+      return res.json({ message: 'Your playLists', playLists: arrayToSend }) /* istanbul ignore next */
+    }).catch((e) => {
+      console.log(e);
       return res.status(500).send({ message: 'Internal serveur error' })
     })
   }

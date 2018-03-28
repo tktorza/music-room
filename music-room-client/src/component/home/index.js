@@ -3,8 +3,10 @@ import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Menu from './menu.js'
+import Playlist from './playlist.js'
 import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
+
 
 class Home extends Component {
 
@@ -13,11 +15,13 @@ class Home extends Component {
   }
 
   serviceMode = () => { this.setState({ mode: 0 }) }
-  playListMode = () => { this.setState({ mode: 1}) }// this.props.dispatch(getPlayList(this.props.user.id)) }
+  playListMode = () => { this.setState({ mode: 1});
+
+  this.props.dispatch(getPlayList(this.props.user.id)) }
   settingsMode= () => { this.setState({ mode: 2 }) }
   render () {
 
-    const { handleSubmit, user } = this.props
+    const { handleSubmit, user, playlist } = this.props
     const { mode } = this.state
     return (
       <View style={{
@@ -32,7 +36,7 @@ class Home extends Component {
       <Text>{mode}</Text>
     )}
     {mode === 1 && (
-      <Text>{mode}</Text>
+        <Playlist  playlist={playlist}/>
     )}
     {mode === 2 && (
       <Text>{mode}</Text>
@@ -49,6 +53,7 @@ const mapStateToProps = state => {
 
   return {
     user: state.user.toJS(),
+    playlist: state.playlist.toJS(),
   }
 }
 

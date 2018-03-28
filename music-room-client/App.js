@@ -8,6 +8,7 @@ import reducer from './src/reducers'
 import { reducer as formReducer } from 'redux-form'
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import Home from './src/component/home/index'
+import NewPlaylist from './src/component/home/newplaylist.js'
 import Login from './src/component/login'
 import Singup from './src/component/singup'
 
@@ -15,6 +16,7 @@ import Singup from './src/component/singup'
 const configureStore = (reducer) => createStore(
   combineReducers({
     user: reducer.user,
+    playlist: reducer.playlist,
     form: formReducer,
   }),
   applyMiddleware(
@@ -26,9 +28,9 @@ const configureStore = (reducer) => createStore(
 
 const store =  configureStore(reducer)
 
-Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
-  console.log('del token');
-})
+// Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
+// console.log('del token');
+// })
 
 class App extends Component {
   render() {
@@ -37,19 +39,25 @@ class App extends Component {
         <Router>
         <Stack
        hideNavBar
-       key="root">
-            <Scene key="login"
+       key='root'>
+            <Scene key='login'
             component={Login}
-            title="Login"
+            title='Login'
             initial
             />
-            <Scene key="singup"
+            <Scene key='singup'
             component={Singup}
-            title="Singup"
+            title='Singup'
             />
-            <Scene key="home"
+            <Scene key='home'
             component={Home}
-            title="home"
+            title='home'
+          />
+            <Scene
+            key='newplaylist'
+            component={NewPlaylist}
+            hideNavBar={false}
+            title='New trak'
             />
           </Stack>
         </Router>

@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable'
 
-import { login } from './user/index.js'
+import { login, verifeUser } from './user/index.js'
+import { updateListOfplayList, setListOfPlaylist } from './playlist/index.js'
 const intialStateUser = {
   firstName: '',
   lastName: '',
@@ -13,7 +14,16 @@ const intialStateUser = {
   goal: 0,
   language: '',
   funds: [],
+  id: '',
 }
+
+const intialStatePlaylist = {
+  playlists: [],
+  nbr: 0,
+}
+
+
+
 
 export default class reducer {
 
@@ -27,10 +37,17 @@ export default class reducer {
       return state = fromJS(intialStateUser)
     case 'http/userUpdate':
       return updateU(state, action.data)
-    case 'socket/userUpdate':
-      return updateU(state, action.data)
-    case 'http/getFound':
-      return addFundUser(state, action.data)
+    default:
+      return state
+    }
+  }
+
+  static playlist (state = fromJS(intialStatePlaylist), action) {
+    switch (action.type) {
+    case 'http/getAllplayList':
+      return setListOfPlaylist(state, action.data)
+    case 'http/newPlayList':
+      return updateListOfplayList(state, action.data)
     default:
       return state
     }

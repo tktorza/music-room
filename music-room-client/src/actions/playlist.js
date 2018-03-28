@@ -3,17 +3,26 @@ import { callApi } from '../utils/callApi.js'
 
 export function getPlayList (userId) {
   return dispatch => {
-    callApi(`playlist/all/${userId}/`, 'get', {}).then(body => {
-      console.log('Body =>', body)
-      //
-      //
-      // dispatch({
-      //   type: 'http/login',
-      //   data: body,
-      // })
+    callApi(`playlist/all/${userId}/`, 'get').then(body => {
+      dispatch({
+        type: 'http/getAllplayList',
+        data: body,
+      })
     }).catch(e => {
       console.log(e)
-      return e
+    })
+  }
+}
+export function createPlayList (data) {
+
+  return dispatch => {
+    callApi('playlist/create', 'post', data).then(body => {
+      dispatch({
+        type: 'http/newPlayList',
+        data: body,
+      })
+    }).catch(e => {
+      console.log(e);
     })
   }
 }

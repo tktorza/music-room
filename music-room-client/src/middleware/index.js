@@ -15,17 +15,24 @@ function forceLogOut () {
     data: {},
   }
 }
+function verifeUser(token) {
+  return {
+    type: 'client/verifeUser',
+    data: token,
+  }
+}
 
 const simpleMiddleWare = socket => ({ dispatch, getState }) => {
 
   return next => action => {
 
-    Expo.SecureStore.getItemAsync('token', {}).then(res => {
-      console.log(res);
-      if (res) {
-        console.log('ici');
+    Expo.SecureStore.getItemAsync('token', {}).then(token => {
+      if (token && (Actions.currentScene === 'login' || Actions.currentScene === 'singup')) {
+        const userState = getState().user.toJS()
+        if (userState.id === '') { dispatch(verifeUser(token)) }
         Actions.home()
-      } else if (Actions.currentScene === 'home') {
+      }
+      if (Actions.currentScene === 'home' && !token) {
         Actions.login()
       }
       return next(action)

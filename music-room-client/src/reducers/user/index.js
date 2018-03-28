@@ -15,19 +15,19 @@ export function login (state, data) {
     .setIn(['firstName'], fromJS(user.firstName))
     .setIn(['url'], fromJS(user.url))
     .setIn(['goal'], fromJS(user.goal))
-    .setIn(['_id'], fromJS(user._id))
     .setIn(['birthdate'], fromJS(user.birthdate))
     .setIn(['isArbitrage'], fromJS(user.isArbitrage))
     // .setIn(['isTokenKraken'], fromJS(user.isTokenKraken))
     .setIn(['isTokenBinace'], fromJS(user.isTokenBinace))
     .setIn(['isActive'], fromJS(user.isActive))
+    .setIn(['id'], fromJS(user.id))
 
 //    .setIn(['language'], fromJS(user.language))
 }
 
 export function verifeUser (state, token) {
 
-  const user = jwt.decode(token)
+  const user = jwtDecode(token)
 
   return state.setIn(['email'], fromJS(user.email))
     .setIn(['isAuthenticated'], fromJS(true))
@@ -35,7 +35,7 @@ export function verifeUser (state, token) {
     .setIn(['name'], fromJS(user.name))
     .setIn(['url'], fromJS(user.url))
     .setIn(['goal'], fromJS(user.goal))
-    .setIn(['_id'], fromJS(user._id))
+    .setIn(['id'], fromJS(user.id))
     .setIn(['isArbitrage'], fromJS(user.isArbitrage))
     .setIn(['firstName'], fromJS(user.firstName))
     .setIn(['lastName'], fromJS(user.lastName))
