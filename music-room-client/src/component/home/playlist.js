@@ -30,7 +30,7 @@ class Playlist extends Component {
           image='https://image.freepik.com/icones-gratuites/itunes-logo-de-la-note-amusical-interieur-d-39-un-cercle_318-50208.jpg'
           style={cardStyle}
         />
-        <Button label="Add song" onPress={() => { Actions.editplaylist({playlistId: p._id, userId: user.id})}}  />
+        <Button label="Use" onPress={() => { Actions.editplaylist({playlistId: p._id, userId: user.id})}}  />
         </View>
       )
           })

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { connect } from 'react-redux'
+import { WebView, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import Menu from './menu.js'
 import Playlist from './playlist.js'
 import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
+import DeezerLogin from './deezerLogin.js'
 
 class Home extends Component {
 
@@ -21,7 +23,11 @@ componentWillMount() {
   state = {
     mode: 0,
   }
-
+ //
+ //  <WebView
+ //  source={{uri: 'https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=tracks&id=1560273&app_id=275462'}}
+ //   style={{width: Dimensions.get('window').width}}
+ // />
   serviceMode = () => { this.setState({ mode: 0 }) }
   playListMode = () => { this.setState({ mode: 1}); this.props.dispatch(getPlayList(this.props.user.id)) }
   settingsMode= () => { this.setState({ mode: 2 }) }
@@ -37,7 +43,6 @@ componentWillMount() {
         alignItems: 'center',
       }}>
 
-
     {mode === 0 && (
       <Text>{mode}</Text>
     )}
@@ -45,11 +50,15 @@ componentWillMount() {
         <Playlist  playlist={playlist} user={user}/>
     )}
     {mode === 2 && (
-      <Text>{mode}</Text>
+      <View>
+      <DeezerLogin />
+      </View>
     )}
 
 
         <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />
+
+
       </View>
     )
   }

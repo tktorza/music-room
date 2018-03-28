@@ -30,9 +30,6 @@ export function createPlayList (data) {
 
 export function addSongPlaylist(id, playlistId, userId) {
 
-  console.log(id);
-  console.log(playlistId);
-  console.log(userId);
   return dispatch => {
     callApi(`playlist/update/${playlistId}/${userId}/${id}`, 'put').then(body => {
       console.log('res de body =>',body);

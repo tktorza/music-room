@@ -33,6 +33,8 @@ const store =  configureStore(reducer)
 // console.log('del token');
 // })
 
+
+
 class App extends Component {
   render() {
     return (
@@ -63,7 +65,7 @@ class App extends Component {
             <Scene key='editplaylist'
             component={EditPlaylist}
             hideNavBar={false}
-            title='Edit track'
+            title='track'
             />
           </Stack>
         </Router>

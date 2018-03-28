@@ -11,8 +11,26 @@ const updateParamsPublic = '{firstName,lastName,url,bio,email}'
 
 const updateParamsPrivate = '{password,newPassword}'
 
+
+var DZ = require('node-deezer');
+var deezer = new DZ();
+
+
 export default class UserController {
 
+static test(req, res) {
+  console.log(req.query);
+
+  deezer.createSession('275462', '49ab00dbfafa0d19b44c21f95261f61a', req.query.code || 'frf633f3ffdefe016973fd48ebff7f44', function (err, result) {
+    console.log('err',err);
+    console.log('result1',result);
+  //res.json({ msg:'hello', access_token: result.accessToken })
+  res.send('<iframe scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=playlist&id=30595446" width="700" height="240"></iframe>')
+
+
+  })
+
+}
   static create (req, res) {
 
     const params = filter(req.body, createParams)

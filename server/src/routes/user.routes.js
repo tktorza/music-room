@@ -29,6 +29,12 @@ export default [
     validator: [],
   },
 
+  {
+    method: 'GET',
+    path: '/test',
+    handler: UserController.test,
+    validator: [],
+  },
   /**
   * @api {Get} /user/:email get a user
   * @apiName UserController
