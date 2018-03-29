@@ -4,7 +4,6 @@ import { callApi } from '../utils/callApi.js'
 export function getPlayList (userId) {
   return dispatch => {
     callApi(`playlist/all/${userId}/`, 'get').then(body => {
-      console.log('getPlayListall />',body);
       dispatch({
         type: 'http/getAllplayList',
         data: body,
@@ -32,7 +31,6 @@ export function addSongPlaylist(id, playlistId, userId) {
 
   return dispatch => {
     callApi(`playlist/update/${playlistId}/${userId}/${id}`, 'put').then(body => {
-      console.log('res de body =>',body);
       dispatch({
         type: 'http/addSongPlayList',
         data: {body, playlistId},

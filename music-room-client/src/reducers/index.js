@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 
 import { login, verifeUser } from './user/index.js'
-import { updateListOfplayList, setListOfPlaylist } from './playlist/index.js'
+import { updateListOfplayList, setListOfPlaylist, addSongPlaylist } from './playlist/index.js'
 const intialStateUser = {
   firstName: '',
   lastName: '',

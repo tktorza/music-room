@@ -5,6 +5,8 @@ import { AuthSession } from 'expo'
 import { Button } from 'react-native-ui-lib'
 
 
+//TODO A FINNIR
+
 const APP_ID = '275462'
 const APP_SECRET = '49ab00dbfafa0d19b44c21f95261f61a'
 const MY_URL = 'http://localhost:8080/'

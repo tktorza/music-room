@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text, Button, ActionBar } from 'react-native-ui-lib'
+import { View, TextInput, Text, ActionBar } from 'react-native-ui-lib'
 import { StyleSheet, ScrollView, WebView, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { Card, Input, H4, Switcher, TabButton } from 'nachos-ui'
+import { Card, Input, H4, Switcher, TabButton, Button } from 'nachos-ui'
 import { connect } from 'react-redux'
 import { addSongPlaylist } from '../../actions/playlist.js'
 import request from 'superagent'
+import Player from '../Player'
 
 class Playlist extends Component {
 
@@ -43,14 +44,14 @@ class Playlist extends Component {
       this.setState({currentList: res})
     })
   }
-  //https://api.deezer.com/search?q=eminem
+
+
   render () {
     const inputStyle = { margin: 15 }
     const cardStyle = {width: 200 }
 
     const { info, value, typeOf, currentList, uri } = this.state
     const { playlist } = this.props
-    //  <Button label="test" onPress={() => { Actions.home() }}  />
     const index =  playlist.playlists.findIndex(e => e._id === this.props.playlistId)
     return (
       <View style={{flex:1}}>
@@ -64,20 +65,20 @@ class Playlist extends Component {
      </Switcher>
      {typeOf === 'play' && (
        <View style={{flex:1}}>
+       <ScrollView   style={{height:'60%'}}>
        { currentList && currentList.length !== 0 && (
          currentList.map((s,key) => {
            return (
-             <View key={key}>
-             <Text>{s.title}</Text>
-             <Button label='play' onPress={() => {this.setState({uri: `https://www.deezer.com/plugins/player?format=square&autoplay=true&playlist=true&color=007FEB&layout=dark&type=tracks&id=${s.id}&app_id=275462&access_token=fr0fnc6Z7E1crLFb2UV5sk2zyaiJOrepOP7axTl1AthSmsyAVYk`}) }}/>
-             </View>
+             <Button kind='squared' iconName='md-musical-notes' key={key} onPress={() => {
+               this.setState({uri: s.preview}) }}>{s.title}</Button>
            )
          })
        )}
-       <WebView
-       source={{uri:  'https://www.deezer.com/plugins/player?access_token=fr0fnc6Z7E1crLFb2UV5sk2zyaiJOrepOP7axTl1AthSmsyAVYk&format=square&autoplay=true&playlist=true&color=007FEB&layout=dark&type=tracks&id=1141668&app_id=275462'}}
-        style={{width: Dimensions.get('window').width}}
-      />
+       </ScrollView >
+       {uri != '' && (
+         <Player uri={uri} currentList={currentList} />
+        )}
+
        </View>
      )}
 
