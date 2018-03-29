@@ -9,54 +9,41 @@ import request from 'superagent'
 
 import { Icon } from 'react-native-elements'
 
-class Playlist extends Component {
 
-  state = {
-    isPlaing: false,
-  }
-
-
-  componentDidMount() {
-    this.playSong(this.props.uri)
-    //    const soundObject = new Expo.Audio.Sound();
-    //   soundObject.loadAsync({uri: 'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Comfort_Fit_-_03_-_Sorry.mp3'}).then(res => {
-    //     console.log('res =>',res);
-    //     soundObject.playAsync().then(test => {
-    //       console.log('Test =>',test);
-    //     })
-    //
-    // }).catch(e => {
-    //   console.log(e);
-    // })
-  }
-  playSong = (uri) => {
-        const soundObject = new Expo.Audio.Sound();
-
-    soundObject.loadAsync({ uri }).then(res => {
-      console.log('res =>',res);
-      soundObject.playAsync().then(test => {
-        console.log('Test =>',test);
-      })
-    }).catch(e => {
-      console.log(e);
-    })
-  }
-
+class Player extends Component {
 
   render () {
 
 
-    const { isPlaing } = this.state
-    const { uri } = this.props
+    const { playSong, previousSong, nextSong } = this.props
 
     return (
-      <View style={{flex:1}}>
-      <Button>Preview</Button>
-      <Button onPress={() => {this.playSong(uri)}}>Play</Button>
-      <Button>Next</Button>
+      <View style={{display:'flex', flexDirection: 'row', justifyContent:'center'}}>
+
+      <Icon
+      raised
+      name='skip-previous'
+      type='skip-previous'
+      color='#f50'
+      onPress={previousSong} />
+
+
+      <Icon
+      raised
+      name='play-arrow'
+      type='play-arrow'
+      color='#f50'
+      onPress={playSong} />
+      <Icon
+      raised
+      name='skip-next'
+      type='skip-next'
+      color='#f50'
+      onPress={nextSong} />
+
       </View>
     )
   }
 }
 
-export default Playlist
+export default Player

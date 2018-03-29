@@ -2,6 +2,7 @@
   "name": "music-room-client",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "fix": "yarn add && rm -fr node_modules/nachos-ui/node_modules/react-native",
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -43,6 +44,7 @@
     "nachos-ui": "^0.1.2",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-native-elements": "^0.19.0",
     "react-native-router-flux": "^4.0.0-beta.28",
     "react-native-ui-lib": "^3.3.35",
     "react-redux": "^5.0.7",

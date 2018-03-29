@@ -31,8 +31,8 @@ const simpleMiddleWare = socket => ({ dispatch, getState }) => {
         const userState = getState().user.toJS()
 
         if (userState.id === '') { dispatch(verifeUser(token)) }
-        Actions.home()
-      }
+          Actions.home()
+        }
       if (Actions.currentScene === 'home' && !token) {
         Actions.login()
       }
