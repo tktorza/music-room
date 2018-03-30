@@ -105,8 +105,6 @@ class Playlist extends Component {
 
 
     let index =  songs.findIndex(e => e.id == currentSong)
-  //  if (index <= songs.length) {index = -1}
-
     index+= 1
 
     soundObject.unloadAsync().then(res => {
@@ -116,19 +114,17 @@ class Playlist extends Component {
   }
 
   previousSong = () => {
-  //   const { currentSong } = this.state
-  //   const { playlist } = this.props
-  //   const index1 =  playlist.playlists.findIndex(e => e._id === this.props.playlistId)
-  //
-  //   const songs = playlist.playlists[index1].songs
-  //   let index =  songs.findIndex(e => e.id == currentSong)
-  // console.log(index);
-  //   if(index < 0 || index <= songs.length) {index = 0}
-  //
-  //   soundObject.unloadAsync().then(res => {
-  //     this.setState({isPlaying: false, currentSong: songs[index - 1].id})
-  //     this.playSong(songs[index - 1].id)
-  //   })
+    const { currentSong } = this.state
+    const { playlist } = this.props
+    const index1 =  playlist.playlists.findIndex(e => e._id === this.props.playlistId)
+
+    const songs = playlist.playlists[index1].songs
+    let index =  songs.findIndex(e => e.id == currentSong)
+
+    soundObject.unloadAsync().then(res => {
+      this.setState({isPlaying: false, currentSong: songs[index - 1].id})
+      this.playSong(songs[index - 1].id)
+    })
   }
   updateGrade = (grade, songId) => {
 
