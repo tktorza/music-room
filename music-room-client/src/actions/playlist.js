@@ -27,16 +27,60 @@ export function createPlayList (data) {
   }
 }
 
-export function addSongPlaylist(id, playlistId, userId) {
+export function addSongPlaylist(id, playlistId, userId, songName) {
 
   return dispatch => {
-    callApi(`playlist/update/${playlistId}/${userId}/${id}`, 'put').then(body => {
+    callApi(`playlist/update/${playlistId}/${userId}/${id}/${songName}`, 'put').then(body => {
       dispatch({
         type: 'http/addSongPlayList',
         data: {body, playlistId},
       })
     }).catch(e => {
       console.log('er sur addsong =>',e);
+    })
+  }
+}
+
+export function updatePlaylist(data, playlistId, userId) {
+
+  return dispatch => {
+    callApi(`playlist/update/${playlistId}/${userId}`, 'post', data).then(body => {
+      dispatch({
+        type: 'http/updatePlaylist',
+        data: {body, playlistId},
+      })
+    }).catch(e => {
+      console.log('er sur updatePlaylist =>',e);
+    })
+  }
+}
+
+export function updatePlaylistPrivate(data, playlistId, userId) {
+
+  return dispatch => {
+    callApi(`playlist/updatePrivate/${playlistId}/${userId}`, 'post', data).then(body => {
+      console.log(body);
+      dispatch({
+        type: 'http/updatePlaylist',
+        data: {body, playlistId},
+      })
+    }).catch(e => {
+      console.log('er sur updatePlaylist =>',e);
+    })
+  }
+}
+
+export function deleteAUser(playlistId, userId, userIdToDelete) {
+  console.log('helelelel');
+  return dispatch => {
+    callApi(`playlist/delete/user/${playlistId}/${userId}/${userIdToDelete}`,'put').then(body => {
+      console.log(body);
+      dispatch({
+        type: 'http/updatePlaylist',
+        data: {body, playlistId},
+      })
+    }).catch(e => {
+      console.log('er sur updatePlaylist =>',e);
     })
   }
 }

@@ -28,11 +28,11 @@ const configureStore = (reducer) => createStore(
 )
 
 const store =  configureStore(reducer)
-
+// 
 // Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
 // console.log('del token');
 // })
-
+//
 
 
 class App extends Component {

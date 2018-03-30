@@ -15,7 +15,7 @@ class NewPlaylist extends Component {
   renderRadioGroup = ({ input, label, meta: { touched, error }, ...custom }) => (
     <RadioGroup
     onChange= {(a, b) => { input.onChange(a, b)}}
-    options={['private', 'publique']}
+    options={['private', 'public']}
     />
   )
 
@@ -23,7 +23,7 @@ class NewPlaylist extends Component {
   onSubmit = event => {
 
     event.users = []
-    event.users.push(this.props.user)
+     event.users.push({id:this.props.user.id, role: 'RW', email: this.props.user.email, super: true})
      this.props.dispatch(createPlayList(event))
   }
 
@@ -33,7 +33,7 @@ class NewPlaylist extends Component {
 
     return (
       <View flex paddingH-25 paddingT-120>
-      <Text blue50 text10>New trak</Text>
+      <Text blue50 text10>New track</Text>
         <Field
           label={'Name'}
           name={'name'}

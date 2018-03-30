@@ -106,10 +106,24 @@ export default [
 /**
 nIqUE LA DocC
 **/
+{
+  method: 'POST',
+  path: '/playlist/updatePrivate/:playListId/:userId',
+  handler: PlaylistController.updatePrivate,
+  validator: [isLogin],
+},
   {
     method: 'PUT',
-    path: '/playlist/update/:playListId/:userId/:newId',
+    path: '/playlist/update/:playListId/:userId/:newId/:songName',
     handler: PlaylistController.addMusicToList,
+    validator: [isLogin],
+  },
+
+
+  {
+    method: 'PUT',
+    path: '/playlist/delete/user/:playListId/:userId/:userIdToDelete',
+    handler: PlaylistController.deleteUser,
     validator: [isLogin],
   },
 ]

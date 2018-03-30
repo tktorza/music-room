@@ -23,11 +23,7 @@ componentWillMount() {
   state = {
     mode: 0,
   }
- //
- //  <WebView
- //  source={{uri: 'https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=tracks&id=1560273&app_id=275462'}}
- //   style={{width: Dimensions.get('window').width}}
- // />
+
   serviceMode = () => { this.setState({ mode: 0 }) }
   playListMode = () => { this.setState({ mode: 1}); this.props.dispatch(getPlayList(this.props.user.id)) }
   settingsMode= () => { this.setState({ mode: 2 }) }

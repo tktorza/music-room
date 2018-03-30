@@ -41,6 +41,7 @@
     "expo": "^25.0.0",
     "immutable": "^3.8.2",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.5",
     "nachos-ui": "^0.1.2",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",

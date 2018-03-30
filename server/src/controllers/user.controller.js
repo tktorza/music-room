@@ -72,7 +72,7 @@ static test(req, res) {
 
       if (!user) { return res.status(404).send({ message: 'We did not find your account' }) }
       if (psw && !user.validPassword(psw)) { return res.status(403).send({ message: 'Wrong password' }) }
-      if (!user.isEmailVerified) { return res.status(403).send({ message: 'Plz verifie your email first' }) }
+    //  if (!user.isEmailVerified) { return res.status(403).send({ message: 'Plz verifie your email first' }) }
       //  if (!user.isActive) { return res.status(403).send({ message: 'account not acctivate' }) }
       const token = generateToken(user)
       return res.json({ token }) /* istanbul ignore next */

@@ -13,10 +13,11 @@ export function setListOfPlaylist(state, data) {
 
 }
 
-export function addSongPlaylist(state, data) {
+
+export function updatePlaylist(state, data) {
     const playlists = state.getIn(['playlists']).toJS()
     const index = playlists.findIndex(e => e._id === data.playlistId)
-    console.log('inde =>',index);
+
     if (index === -1) { return state }
     playlists[index] = data.body.playlist
     return state.setIn(['playlists'], fromJS(playlists))

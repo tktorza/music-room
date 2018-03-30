@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AuthSession } from 'expo'
+import { Actions } from 'react-native-router-flux'
 
 import { Button } from 'react-native-ui-lib'
 
@@ -22,6 +23,12 @@ export default class DeezerLogin extends React.Component {
         {this.state.result ? (
           <Text>{JSON.stringify(this.state.result)}</Text>
         ) : null}
+        <Button text70 white blue30 label={'Logout'} onPress={() => {
+           Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
+           console.log('del token');
+             Actions.login()
+           })
+        }} />
         </View>
     );
   }

@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 
 import { login, verifeUser } from './user/index.js'
-import { updateListOfplayList, setListOfPlaylist, addSongPlaylist } from './playlist/index.js'
+import { updateListOfplayList, setListOfPlaylist, updatePlaylist } from './playlist/index.js'
 const intialStateUser = {
   firstName: '',
   lastName: '',
@@ -49,7 +49,9 @@ export default class reducer {
     case 'http/newPlayList':
       return updateListOfplayList(state, action.data)
     case 'http/addSongPlayList':
-      return addSongPlaylist(state, action.data)
+      return updatePlaylist(state, action.data)
+    case 'http/updatePlaylist':
+        return updatePlaylist(state, action.data)
     default:
       return state
     }
