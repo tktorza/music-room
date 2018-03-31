@@ -1,13 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AuthSession } from 'expo'
+import { connect } from 'react-redux'
 
 import { Button } from 'react-native-ui-lib'
+import {facebookLoginAction } from '../../actions/user.js'
 
 
 const FB_APP_ID = '658620540953187'
 
-export default class FacebookLogin extends React.Component {
+ class FacebookLogin extends React.Component {
   state = {
     result: null,
   };
@@ -25,12 +27,14 @@ export default class FacebookLogin extends React.Component {
 
   _handlePressAsync = async () => {
     let redirectUrl = AuthSession.getRedirectUrl();
+    console.log(redirectUrl);
     let result = await AuthSession.startAsync({
       authUrl:
         `https://www.facebook.com/v2.8/dialog/oauth?response_type=token` +
         `&client_id=${FB_APP_ID}` +
         `&redirect_uri=${encodeURIComponent(redirectUrl)}`,
     });
+    this.props.dispatch(facebookLoginAction(result))
     this.setState({ result });
   };
 }
@@ -42,3 +46,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.toJS(),
+    playlist: state.playlist.toJS(),
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { dispatch }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FacebookLogin)

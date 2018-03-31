@@ -66,6 +66,7 @@
     "eslint-config-zavatta": "^6.0.1",
     "expect.js": "^0.3.1",
     "express": "^4.15.4",
+    "fb": "^2.0.0",
     "filter-object": "^3.0.0",
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.0.1",

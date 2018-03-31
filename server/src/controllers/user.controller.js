@@ -4,8 +4,10 @@ import { generateToken } from '../utils/token'
 import bcrypt from 'bcryptjs'
 // import { send } from '../utils/sendEmail.js'
 import md5 from 'js-md5'
+import FB from 'fb'
 
 const createParams = '{email,password,firstName,lastName,url,bio}'
+const createParamsFacebook = '{access_token}'
 
 const updateParamsPublic = '{firstName,lastName,url,bio,email}'
 
@@ -31,6 +33,19 @@ static test(req, res) {
   })
 
 }
+static facebookCreate(req, res) {
+  //TODO A FINIR MA GEUL !!!!
+  const params = filter(req.body, createParamsFacebook)
+  console.log(req.body.access_token);
+  FB.setAccessToken(req.body.access_token.toString())
+  FB.api('me', { fields: 'id,name,email,first_name,last_name', access_token: req.body.access_token.toString() }, function (res) {
+    console.log(res);
+});
+  console.log(params)
+
+}
+
+
   static create (req, res) {
 
     const params = filter(req.body, createParams)
@@ -46,7 +61,6 @@ static test(req, res) {
 
       const user = new User({
         email: params.email,
-        role: 20,
         isActive: false,
         url: params.url,
         firstName: params.firstName,

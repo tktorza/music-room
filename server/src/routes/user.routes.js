@@ -135,4 +135,14 @@ export default [
     handler: UserController.verifyEmail,
     validator: [],
   },
+
+
+  //TODO balacke de la doc
+
+  {
+    method: 'POST',
+    path: '/user/create/facebook',
+    handler: UserController.facebookCreate,
+    validator: [],
+  }
 ]

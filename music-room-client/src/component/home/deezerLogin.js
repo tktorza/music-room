@@ -36,7 +36,7 @@ export default class DeezerLogin extends React.Component {
   _handlePressAsync = async () => {
     let redirectUrl = AuthSession.getRedirectUrl();
     let result = await AuthSession.startAsync({
-      authUrl: `https://connect.deezer.com/oauth/auth.php?app_id=${APP_ID}&redirect_uri=http://localhost:8080/test&perms=basic_access,email`
+      authUrl: `https://connect.deezer.com/oauth/auth.php?app_id=${APP_ID}&redirect_uri=http://localhost:8080/test&perms=basic_access,email,offline_access,manage_library,manage_community,delete_library,listening_history`
     });
     this.setState({ result });
   };

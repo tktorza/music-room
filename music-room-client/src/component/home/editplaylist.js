@@ -19,7 +19,7 @@ class Playlist extends Component {
   state = {
     value: '',
     info: [],
-    typeOf: 'add',
+    typeOf: 'play',
     currentList: [],
     uri: '',
     isPlaying: false,
@@ -157,16 +157,18 @@ class Playlist extends Component {
     const { info, value, typeOf, currentList, uri, currentSong} = this.state
     const { playlist, user } = this.props
     const index =  playlist.playlists.findIndex(e => e._id === this.props.playlistId)
+    const indexUser = playlist.playlists[index].users.findIndex(u => u.id === user.id)
     return (
       <View style={{flex:1}}>
+       {playlist.playlists[index].users[indexUser].role === 'RW' && (
       <Switcher
       onChange={valueOne =>  { this.setState({ typeOf: valueOne }); }}
       defaultSelected={typeOf}
       >
       <TabButton value='play' text='Play' iconName='md-musical-notes'/>
       <TabButton value='add' text='add Song' iconName='md-add' />
-      <TabButton value='addUser' text='add an user' iconName='md-person-add' />
-      </Switcher>
+      <TabButton  value='addUser' text='add an user' iconName='md-person-add' />
+      </Switcher>)}
       {typeOf === 'play' && (
         <View style={{flex:1}}>
         <ScrollView   style={{height:'60%'}}>
@@ -174,6 +176,7 @@ class Playlist extends Component {
           playlist.playlists[index].songs.map((s,key) => {
             return (
               <View key={key} style={{display: 'flex', flexDirection: 'row',  alignItems: 'center' }}>
+                 {playlist.playlists[index].users[indexUser].role === 'RW' && (
               <Icon
               raised
               name='keyboard-arrow-up'
@@ -181,6 +184,8 @@ class Playlist extends Component {
               color='#f50'
               size={15}
               onPress={() => { if (key !== 0) { this.updateGrade(1,s.id) } }} />
+            )}
+               {playlist.playlists[index].users[indexUser].role === 'RW' && (
               <Icon
               raised
               name='keyboard-arrow-down'
@@ -188,6 +193,7 @@ class Playlist extends Component {
               color='#f50'
               size={15}
               onPress={() => { if (key < playlist.playlists[index].songs.length - 1) { this.updateGrade(-1,s.id) } }} />
+            )}
               <Button kind='squared' iconName='md-musical-notes'  onPress={() => { this.setState({currentSong: s.id}); this.playSong(s.id) }}>{s.name}</Button>
               </View>)
           })
@@ -197,7 +203,7 @@ class Playlist extends Component {
         </View>
       )}
 
-      {typeOf === 'add' && (
+      {typeOf === 'add' &&  (
         <View>
         <Input
         style={inputStyle}
@@ -232,7 +238,7 @@ class Playlist extends Component {
         </View>
       )}
 
-      {typeOf === 'addUser' && ( <AddUser plId={this.props.playlistId} userId={user.id} users={ playlist.playlists[index].users} /> )}
+      {typeOf === 'addUser' &&( <AddUser plId={this.props.playlistId} userId={user.id} users={ playlist.playlists[index].users} /> )}
       </View>
     )
   }

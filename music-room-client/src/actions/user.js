@@ -29,3 +29,19 @@ export function singupUser (event) {
     })
   }
 }
+
+
+export function facebookLoginAction (event) {
+  return dispatch => {
+    callApi(`user/create/facebook`, 'post',event.params).then(body => {
+
+      dispatch({
+        type: 'http/login',
+        data: body,
+      })
+    }).catch(e => {
+      console.log(e)
+      return e
+    })
+  }
+}

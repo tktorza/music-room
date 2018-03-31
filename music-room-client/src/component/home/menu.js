@@ -12,9 +12,9 @@ class Menu extends Component {
         containerStyle={[styles.absoluteContainer]}
         backgroundColor={'orange'}
         actions={[
-          { label: 'Services', onPress: () => serviceMode(), white: true },
-          { label: 'Your playlist', onPress: () => playListMode(), white: true },
-          { label: 'setings', onPress: () => settingsMode(), white: true },
+          { label: 'Track Vote', onPress: () => serviceMode(), white: true },
+          { label: 'Playlist Editor', onPress: () => playListMode(), white: true },
+          { label: 'Setings', onPress: () => settingsMode(), white: true },
         ]}
       />
     )
