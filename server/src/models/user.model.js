@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   isPassWordReset: { type: Boolean, default: false },
   passwordResetCode: String,
   isPrivateInfo: { type: Boolean, default: false },
-  musicTags: Array
+  musicTags: Array,
 }, {
   timestamps: true,
 })

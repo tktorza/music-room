@@ -103,22 +103,21 @@ export default [
     validator: [isLogin],
   },
 
-/**
+  /**
 nIqUE LA DocC
 **/
-{
-  method: 'POST',
-  path: '/playlist/updatePrivate/:playListId/:userId',
-  handler: PlaylistController.updatePrivate,
-  validator: [isLogin],
-},
+  {
+    method: 'POST',
+    path: '/playlist/updatePrivate/:playListId/:userId',
+    handler: PlaylistController.updatePrivate,
+    validator: [isLogin],
+  },
   {
     method: 'PUT',
     path: '/playlist/update/:playListId/:userId/:newId/:songName',
     handler: PlaylistController.addMusicToList,
     validator: [isLogin],
   },
-
 
   {
     method: 'PUT',

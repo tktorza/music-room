@@ -142,12 +142,18 @@ export default [
     validator: [],
   },
 
-  //TODO balacke de la doc
+  {
+    method: 'PUT',
+    path: '/user/resetPassword/:email/:code/:newPassword',
+    handler: UserController.resetVerefiPassword,
+    validator: [],
+  },
+  // TODO balacke de la doc
 
   {
     method: 'POST',
     path: '/user/create/facebook',
     handler: UserController.facebookCreate,
     validator: [],
-  }
+  },
 ]

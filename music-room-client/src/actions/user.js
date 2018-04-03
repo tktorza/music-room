@@ -101,10 +101,22 @@ export function resetPass(email) {
   return dispatch => {
     callApi(`user/resetPassword/${email}`, 'get').then(body => {
       console.log(body);
-      // dispatch({
-      //   type: 'http/login',
-      //   data: body,
-      // })
+    }).catch(e => {
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
+    })
+  }
+}
+
+export function verifyNewPassword(email,newPassword, code) {
+  return dispatch => {
+    callApi(`user/resetPassword/${email}/${code}/${newPassword}`, 'put').then(body => {
+      dispatch({
+        type: 'http/login',
+        data: body,
+      })
     }).catch(e => {
       dispatch({
         type: 'client/addNotife',

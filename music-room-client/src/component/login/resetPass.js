@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import { resetPass } from '../../actions/user.js'
+import { resetPass, verifyNewPassword } from '../../actions/user.js'
 import { Input, Button } from 'nachos-ui'
 import Toaster from '../toaster/index.js'
+
 
 class ResetPass extends Component {
 
   state = {
     code: '',
     email: '',
+    newPassword: '',
     isSend: false,
   }
   render () {
 
-    const { code, isSend, email } = this.state
+    const { code, isSend, email, newPassword } = this.state
 
     return (
       <View flex paddingH-25 paddingT-120>
@@ -36,7 +38,13 @@ class ResetPass extends Component {
       value={this.state.code}
       onChangeText={value => this.setState({ code: value })}
       />
-      <Button onPress={() => { this.setState({isSend: true})}}>Verifie</Button>
+      <Input
+      style={{ margin: 15 }}
+      placeholder={'New-Password'}
+      value={this.state.newPassword}
+      onChangeText={value => this.setState({ newPassword: value })}
+      />
+      <Button onPress={() => { this.setState({isSend: true}); this.props.dispatch(verifyNewPassword(email,newPassword, code))}}>Verifie</Button>
 
       </View>
     )}

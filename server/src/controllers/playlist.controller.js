@@ -63,21 +63,21 @@ export default class PlaylistController {
       playLists.forEach(playList => { playList.users.forEach(u => { if (playList.type === 'public') { arrayToSend.push(playList) } }) })
       playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'public') { arrayToSend.push(playList) } }) })
       playLists.forEach(p => {
-        p.songs = _.sortBy(p.songs, ['grade']);
+        p.songs = _.sortBy(p.songs, ['grade'])
 
       })
       return res.json({ message: 'Your playLists', playLists: arrayToSend }) /* istanbul ignore next */
     }).catch(() => { return res.status(500).send({ message: 'Internal serveur error' }) })
   }
 
-  static deleteUser(req, res) {
+  static deleteUser (req, res) {
     Playlist.findOne({ _id: req.params.playListId }).then(playList => {
 
       if (!playList) { return res.status(404).send({ message: 'No playList found' }) }
 
       let test = false
       let index = -1
-      playList.users.forEach((u,key) => {
+      playList.users.forEach((u, key) => {
         if (u.id === req.params.userId && u.role === 'RW') {
           test = true
         }
@@ -86,9 +86,9 @@ export default class PlaylistController {
         }
       })
 
-      playList.users.splice(index,1)
-      Playlist.findOneAndUpdate({  _id: req.params.playListId }, { $set: { users: playList.users } }, { new: true }).then(playlist => {
-        playlist.songs = _.sortBy(playlist.songs, ['grade']);
+      playList.users.splice(index, 1)
+      Playlist.findOneAndUpdate({ _id: req.params.playListId }, { $set: { users: playList.users } }, { new: true }).then(playlist => {
+        playlist.songs = _.sortBy(playlist.songs, ['grade'])
         return res.json({ message: 'Your playList', playlist })
       }).catch(() => {
         return res.status(500).send({ message: 'Internal serveur error' })
@@ -96,18 +96,18 @@ export default class PlaylistController {
     })
   }
 
-  static updatePrivate(req, res) {
+  static updatePrivate (req, res) {
     const params = filter(req.body, updateParamsPrivate)
 
     Playlist.findOne({ _id: req.params.playListId }).then(playList => {
       if (!playList) { return res.status(404).send({ message: 'No playList found' }) }
-      User.findOne({email: params.email}).then(user => {
+      User.findOne({ email: params.email }).then(user => {
         if (!user) { return res.status(404).send({ message: 'No user found' }) }
-        if (user._id.toString() === req.params.userId) {return res.status(403).send({message: 'You can\'t add your self'})}
+        if (user._id.toString() === req.params.userId) { return res.status(403).send({ message: 'You can\'t add your self' }) }
         let test = false
         let doubleUser = false
         let index = -1
-        playList.users.forEach((u,key) => {
+        playList.users.forEach((u, key) => {
           if (u.id === req.params.userId && u.role === 'RW') {
             test = true
           }
@@ -120,12 +120,12 @@ export default class PlaylistController {
 
         const users = playList.users
         let tmpT = 'R'
-        if(params.type.toString() === 'read') { tmpT = 'R' }
-        if(params.type.toString() === 'read&&write') { tmpT = 'RW' }
-        if (!doubleUser) {users.push({id: user.id, role: tmpT, email:user.email, super: false}) } else { users[index] = {id: user.id, role: tmpT, email:user.email, super: false} }
+        if (params.type.toString() === 'read') { tmpT = 'R' }
+        if (params.type.toString() === 'read&&write') { tmpT = 'RW' }
+        if (!doubleUser) { users.push({ id: user.id, role: tmpT, email: user.email, super: false }) } else { users[index] = { id: user.id, role: tmpT, email: user.email, super: false } }
 
-        Playlist.findOneAndUpdate({  _id: req.params.playListId }, { $set: { users } }, { new: true }).then(playlist => {
-          playlist.songs = _.sortBy(playlist.songs, ['grade']);
+        Playlist.findOneAndUpdate({ _id: req.params.playListId }, { $set: { users } }, { new: true }).then(playlist => {
+          playlist.songs = _.sortBy(playlist.songs, ['grade'])
 
           return res.json({ message: 'Your playList', playlist })
         }).catch(() => {
@@ -149,8 +149,8 @@ export default class PlaylistController {
       })
       if (!test) { return res.status(403).send({ message: 'You are not allowed to access this playList' }) }
 
-      Playlist.findOneAndUpdate({  _id: req.params.playListId }, { $set: params }, { new: true }).then(playlist => {
-        playlist.songs = _.sortBy(playlist.songs, ['grade']);
+      Playlist.findOneAndUpdate({ _id: req.params.playListId }, { $set: params }, { new: true }).then(playlist => {
+        playlist.songs = _.sortBy(playlist.songs, ['grade'])
 
         return res.json({ message: 'Your playList', playlist })
       }).catch(() => {
@@ -160,7 +160,6 @@ export default class PlaylistController {
   }
 
   static addMusicToList (req, res) {
-
 
     Playlist.findOne({ _id: req.params.playListId }).then(playList => {
       if (!playList) { return res.status(404).send({ message: 'No playList found' }) }
@@ -172,12 +171,12 @@ export default class PlaylistController {
       })
       if (!test) { return res.status(403).send({ message: 'You are not allowed to access this playList' }) }
 
-      let songs = playList.songs
-      songs.push({ id:req.params.newId, grade: songs.length - 1, name: req.params.songName })
-      Playlist.findOneAndUpdate({  _id: req.params.playListId }, { $set: { songs: songs} }, { new: true }).then(playlist => {
-        playlist.songs = _.sortBy(playlist.songs, ['grade']);
+      const songs = playList.songs
+      songs.push({ id: req.params.newId, grade: songs.length - 1, name: req.params.songName })
+      Playlist.findOneAndUpdate({ _id: req.params.playListId }, { $set: { songs } }, { new: true }).then(playlist => {
+        playlist.songs = _.sortBy(playlist.songs, ['grade'])
 
-        return res.json({ message: 'Your playlist', playlist: playlist })
+        return res.json({ message: 'Your playlist', playlist })
       }).catch(() => { return res.status(500).send({ message: 'Internal serveur error' }) })
     })
   }
