@@ -2,28 +2,46 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import { verifeUser } from '../../actions/user.js'
+import { resetPass } from '../../actions/user.js'
 import { Input, Button } from 'nachos-ui'
 import Toaster from '../toaster/index.js'
 
-class Code extends Component {
+class ResetPass extends Component {
 
   state = {
-    code: ''
+    code: '',
+    email: '',
+    isSend: false,
   }
   render () {
 
-    const { code } = this.state
+    const { code, isSend, email } = this.state
 
     return (
       <View flex paddingH-25 paddingT-120>
+      <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
+      <Input
+      style={{ margin: 15 }}
+      placeholder={'email'}
+      value={this.state.email}
+      onChangeText={value => this.setState({ email: value })}
+      />
+      <Button onPress={() => { this.setState({isSend: true}), this.props.dispatch(resetPass(email))}}>Send code</Button>
+      </View>
+{isSend && (
+    <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
       <Input
       style={{ margin: 15 }}
       placeholder={'code'}
       value={this.state.code}
       onChangeText={value => this.setState({ code: value })}
       />
-          <Button onPress={() => {this.props.dispatch(verifeUser(code, this.props.email))}}>Verifie</Button>
+      <Button onPress={() => { this.setState({isSend: true})}}>Verifie</Button>
+
+      </View>
+    )}
+
+
           {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
 
       </View>
@@ -42,4 +60,4 @@ const mapDispatchToProps = dispatch => {
   return { dispatch }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Code)
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPass)

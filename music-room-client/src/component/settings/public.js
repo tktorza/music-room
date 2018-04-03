@@ -7,6 +7,7 @@ import { Card, Input, H4, Switcher, TabButton, Button, RadioGroup } from 'nachos
 
 import { updateUser } from '../../actions/user.js'
 import { TagsInput } from 'react-native-ui-lib'
+import Toaster from '../toaster/index.js'
 
 
 class publicUpdate extends Component {
@@ -76,6 +77,8 @@ state = {
         component={this.renderRadioGroup}
       />
           <Button  kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
+          {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -96,6 +99,7 @@ const mapStateToProps = state => {
   return {
       user: state.user.toJS(),
       initialValues: state.user.toJS(),
+      notife: state.notife.toJS(),
    }
 }
 

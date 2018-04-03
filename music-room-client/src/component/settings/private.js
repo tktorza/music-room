@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import { Card, Input, H4, Switcher, TabButton, Button, RadioGroup } from 'nachos-ui'
 
 import { updateUserPrivate } from '../../actions/user.js'
+import Toaster from '../toaster/index.js'
 
 class Singup extends Component {
 
@@ -49,6 +50,8 @@ class Singup extends Component {
           secureTextEntry={true}
         />
           <Button  kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
+          {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -70,6 +73,7 @@ const mapStateToProps = state => {
   return {
       user: state.user.toJS(),
       initialValues: state.user.toJS(),
+      notife: state.notife.toJS(),
    }
 }
 const mapDispatchToProps = dispatch => {

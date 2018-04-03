@@ -9,6 +9,7 @@ import request from 'superagent'
 import Player from '../Player'
 import AddUser from './adduser.js'
 import { Icon } from 'react-native-elements'
+import Toaster from '../toaster/index.js'
 
 
 const soundObject = new Expo.Audio.Sound();
@@ -239,6 +240,8 @@ class Playlist extends Component {
       )}
 
       {typeOf === 'addUser' &&( <AddUser plId={this.props.playlistId} userId={user.id} users={ playlist.playlists[index].users} /> )}
+      {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -249,6 +252,7 @@ const mapStateToProps = state => {
   return {
     playlist:  state.playlist.toJS(),
     user: state.user.toJS(),
+    notife: state.notife.toJS(),
   }
 }
 

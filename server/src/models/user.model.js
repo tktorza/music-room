@@ -15,6 +15,9 @@ const UserSchema = new mongoose.Schema({
   socketId: String,
   isEmailVerified: { type: Boolean, default: false },
   isEmailVerifiedToken: String,
+
+  isPassWordReset: { type: Boolean, default: false },
+  passwordResetCode: String,
   isPrivateInfo: { type: Boolean, default: false },
   musicTags: Array
 }, {

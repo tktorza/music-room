@@ -9,11 +9,11 @@ import { reducer as formReducer } from 'redux-form'
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import App from './src/app.js'
 
-
 const configureStore = (reducer) => createStore(
   combineReducers({
     user: reducer.user,
     playlist: reducer.playlist,
+    notife: reducer.notife,
     form: formReducer,
   }),
   applyMiddleware(
@@ -25,7 +25,9 @@ const configureStore = (reducer) => createStore(
 
 const store =  configureStore(reducer)
 
+
 class MusicRoom extends Component {
+
   render() {
     return (
       <Provider store={store}>
@@ -34,3 +36,4 @@ class MusicRoom extends Component {
     );
   }
 }
+export default MusicRoom

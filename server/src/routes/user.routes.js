@@ -135,7 +135,12 @@ export default [
     handler: UserController.verifyEmail,
     validator: [],
   },
-
+  {
+    method: 'GET',
+    path: '/user/resetPassword/:email',
+    handler: UserController.resetPassword,
+    validator: [],
+  },
 
   //TODO balacke de la doc
 

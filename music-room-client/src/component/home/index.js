@@ -8,6 +8,7 @@ import Playlist from './playlist.js'
 import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
 import Settings from '../settings/index.js'
+import Toaster from '../toaster/index.js'
 
 class Home extends Component {
 
@@ -49,6 +50,8 @@ componentWillMount() {
       <Settings />
     )}
         <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />
+        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -59,6 +62,7 @@ const mapStateToProps = state => {
   return {
     user: state.user.toJS(),
     playlist: state.playlist.toJS(),
+    notife: state.notife.toJS(),
   }
 }
 

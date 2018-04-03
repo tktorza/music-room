@@ -7,6 +7,8 @@ import { Card, Input, H4, Switcher, TabButton, Button, RadioGroup } from 'nachos
 
 import { updatePlaylistPrivate, deleteAUser } from '../../actions/playlist.js'
 import { Icon } from 'react-native-elements'
+import Toaster from '../toaster/index.js'
+
 
 
 class AddNewUser extends Component {
@@ -37,7 +39,6 @@ class AddNewUser extends Component {
   render () {
 
     const { handleSubmit, users } = this.props
-    console.log(users);
     return (
       <View>
         <Field
@@ -72,6 +73,8 @@ class AddNewUser extends Component {
               </View>)
           })
         )}
+        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -95,6 +98,7 @@ const mapStateToProps = state => {
   return {
     user: state.user.toJS(),
     playlist: state.playlist.toJS(),
+    notife: state.notife.toJS(),
   }
 }
 

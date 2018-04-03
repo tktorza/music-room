@@ -63,7 +63,7 @@ export default class reducer {
   static notife (state = fromJS(intialStateNotife), action) {
     switch (action.type) {
       case 'client/addNotife':
-        return state.setIn(['message'], fromJS(action.data.message))
+        return state.setIn(['message'], fromJS(action.data))
       case 'client/delNotife':
         return state.setIn(['message'], fromJS(''))
       default:

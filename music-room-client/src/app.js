@@ -5,13 +5,14 @@ import { Provider } from 'react-redux'
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
+import { Toast } from 'react-native-ui-lib'
 import Home from './component/home/index'
 import NewPlaylist from './component/home/newplaylist.js'
 import Login from './component/login'
 import Singup from './component/singup'
 import Code from './component/singup/code'
 import EditPlaylist from './component/home/editplaylist.js'
-
+import ResetPass from './component/login/resetPass'
 
 class App extends Component {
   render() {
@@ -48,29 +49,15 @@ class App extends Component {
             hideNavBar={false}
             title='track'
             />
+            <Scene key='resetPass'
+            component={ResetPass}
+            hideNavBar={false}
+            title='password reset'
+            />
           </Stack>
         </Router>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
-
-const mapStateToProps = state => {
-  return {
-    notife: state.notife.toJS()
-   }
-}
-
-const mapDispatchToProps = dispatch => {
-  return { dispatch }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

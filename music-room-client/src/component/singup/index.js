@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
 import { singupUser } from '../../actions/user.js'
-
+import Toaster from '../toaster/index.js'
 class Singup extends Component {
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
@@ -46,6 +46,7 @@ class Singup extends Component {
         />
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Singup' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.login() }} label='login' />
+        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
 
       </View>
     )
@@ -67,7 +68,9 @@ Singup = reduxForm({
 })(Singup)
 
 const mapStateToProps = state => {
-  return { state }
+  return {
+    notife: state.notife.toJS()
+   }
 }
 
 const mapDispatchToProps = dispatch => {

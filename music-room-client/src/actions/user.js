@@ -10,8 +10,10 @@ export function loginUser (event) {
         data: body,
       })
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -21,8 +23,10 @@ export function singupUser (event) {
     callApi('user/create', 'post', event).then(() => {
       Actions.code({email: event.email})
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -37,8 +41,10 @@ export function facebookLoginAction (event) {
         data: body,
       })
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -51,8 +57,10 @@ export function updateUser(event, userId) {
         data: body,
       })
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -65,8 +73,10 @@ export function updateUserPrivate(event, userId) {
         data: body,
       })
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -79,9 +89,27 @@ export function verifeUser(code, email) {
         data: body,
       })
     }).catch(e => {
-      console.log(e)
-      return e
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
+}
 
+export function resetPass(email) {
+  return dispatch => {
+    callApi(`user/resetPassword/${email}`, 'get').then(body => {
+      console.log(body);
+      // dispatch({
+      //   type: 'http/login',
+      //   data: body,
+      // })
+    }).catch(e => {
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
+    })
+  }
 }

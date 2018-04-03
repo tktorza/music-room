@@ -6,6 +6,7 @@ import { View, TextInput, Text, Button, } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
 import { RadioGroup } from 'nachos-ui'
 import { createPlayList } from '../../actions/playlist.js'
+import Toaster from '../toaster/index.js'
 
 class NewPlaylist extends Component {
 
@@ -52,6 +53,8 @@ class NewPlaylist extends Component {
         />
 
         <Button onPress={handleSubmit(this.onSubmit)} label="Create"/>
+        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
 
       </View>
     )
@@ -76,6 +79,7 @@ const mapStateToProps = state => {
   return {
     user: state.user.toJS(),
     playlist: state.playlist.toJS(),
+    notife: state.notife.toJS(),
   }
 }
 

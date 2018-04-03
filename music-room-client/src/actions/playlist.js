@@ -1,4 +1,6 @@
 import { callApi } from '../utils/callApi.js'
+import { Actions } from 'react-native-router-flux'
+
 // import jwt from 'jsonwebtoken'
 
 export function getPlayList (userId) {
@@ -9,7 +11,10 @@ export function getPlayList (userId) {
         data: body,
       })
     }).catch(e => {
-      console.log('err get play list =>',e)
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -21,8 +26,12 @@ export function createPlayList (data) {
         type: 'http/newPlayList',
         data: body,
       })
+      Actions.home()
     }).catch(e => {
-      console.log('err creact play list => ',e);
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -36,7 +45,10 @@ export function addSongPlaylist(id, playlistId, userId, songName) {
         data: {body, playlistId},
       })
     }).catch(e => {
-      console.log('er sur addsong =>',e);
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -50,7 +62,10 @@ export function updatePlaylist(data, playlistId, userId) {
         data: {body, playlistId},
       })
     }).catch(e => {
-      console.log('er sur updatePlaylist =>',e);
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -65,7 +80,10 @@ export function updatePlaylistPrivate(data, playlistId, userId) {
         data: {body, playlistId},
       })
     }).catch(e => {
-      console.log('er sur updatePlaylist =>',e);
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }
@@ -80,7 +98,10 @@ export function deleteAUser(playlistId, userId, userIdToDelete) {
         data: {body, playlistId},
       })
     }).catch(e => {
-      console.log('er sur updatePlaylist =>',e);
+      dispatch({
+        type: 'client/addNotife',
+        data: e,
+      })
     })
   }
 }

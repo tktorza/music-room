@@ -20,7 +20,7 @@ var deezer = new DZ();
 const createCode = () => {
   let str = ''
   for (var i = 0; i < 6; i++) {
-  str += Math.floor(Math.random() * Math.floor(10));
+    str += Math.floor(Math.random() * Math.floor(10));
   }
   return str
 }
@@ -91,7 +91,7 @@ export default class UserController {
       const email = params.email
       const tokenStr = createCode()
       console.log(tokenStr);
-       send('no-reply@musiroom.com', email, 'Account validation:', { code: tokenStr, name: params.firstName })
+      send('no-reply@musiroom.com', email, 'Account validation:', { code: tokenStr, name: params.firstName })
 
       const user = new User({
         email: params.email,
@@ -200,4 +200,20 @@ export default class UserController {
       }).catch(() => { return res.status(500).send({ message: 'Internal serveur error' }) })
     }
 
+    static resetPassword (req, res) {
+
+      User.findOne({ email: req.params.email }).then(u => {
+
+        if (!u) { return res.status(404).send({ message: 'No account whit this email' }) }
+
+        const email = req.params.email
+        const tokenStr = createCode()
+        console.log(tokenStr);
+        send('no-reply@musiroom.com', email, 'Reset password:', { code: tokenStr, name: u.firstName })
+        User.findOneAndUpdate({ email },{$set: {isPassWordReset: true, passwordResetCode: tokenStr}}).then(res => {
+          res.json({message: 'email send'})
+        })
+
+      })
+    }
   }

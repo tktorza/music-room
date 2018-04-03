@@ -6,6 +6,8 @@ import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
 import { loginUser } from '../../actions/user.js'
 import FacebookLogin from './facebookLogin.js'
+import Toaster from '../toaster/index.js'
+
 class Login extends Component {
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
@@ -37,7 +39,10 @@ class Login extends Component {
         />
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Login' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.singup() }} label='Singup' />
+        <Button link text70 orange30 marginT-20 onPress={() => { Actions.resetPass() }} label='reset-password' />
         <FacebookLogin  />
+        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+
       </View>
     )
   }
@@ -58,7 +63,7 @@ Login = reduxForm({
 })(Login)
 
 const mapStateToProps = state => {
-  return { state }
+  return { notife: state.notife.toJS() }
 }
 
 const mapDispatchToProps = dispatch => {
