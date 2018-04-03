@@ -7,7 +7,7 @@ import Menu from './menu.js'
 import Playlist from './playlist.js'
 import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
-import DeezerLogin from './deezerLogin.js'
+import Settings from '../settings/index.js'
 
 class Home extends Component {
 
@@ -46,15 +46,9 @@ componentWillMount() {
         <Playlist  playlist={playlist} user={user}/>
     )}
     {mode === 2 && (
-      <View>
-      <DeezerLogin />
-      </View>
+      <Settings />
     )}
-
-
         <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />
-
-
       </View>
     )
   }

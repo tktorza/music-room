@@ -7,11 +7,7 @@ import thunk from 'redux-thunk'
 import reducer from './src/reducers'
 import { reducer as formReducer } from 'redux-form'
 import { Router, Scene, Stack } from 'react-native-router-flux'
-import Home from './src/component/home/index'
-import NewPlaylist from './src/component/home/newplaylist.js'
-import Login from './src/component/login'
-import Singup from './src/component/singup'
-import EditPlaylist from './src/component/home/editplaylist.js'
+import App from './src/app.js'
 
 
 const configureStore = (reducer) => createStore(
@@ -28,59 +24,13 @@ const configureStore = (reducer) => createStore(
 )
 
 const store =  configureStore(reducer)
-// 
-// Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
-// console.log('del token');
-// })
-//
 
-
-class App extends Component {
+class MusicRoom extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-        <Stack
-       hideNavBar
-       key='root'>
-            <Scene key='login'
-            component={Login}
-            title='Login'
-            initial
-            />
-            <Scene key='singup'
-            component={Singup}
-            title='Singup'
-            />
-            <Scene key='home'
-            component={Home}
-            title='home'
-          />
-            <Scene
-            key='newplaylist'
-            component={NewPlaylist}
-            hideNavBar={false}
-            title='New track'
-            />
-            <Scene key='editplaylist'
-            component={EditPlaylist}
-            hideNavBar={false}
-            title='track'
-            />
-          </Stack>
-        </Router>
+        <App />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
-
-export default App

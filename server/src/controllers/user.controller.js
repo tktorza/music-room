@@ -2,48 +2,81 @@ import filter from 'filter-object'
 import User from '../models/user.model'
 import { generateToken } from '../utils/token'
 import bcrypt from 'bcryptjs'
-// import { send } from '../utils/sendEmail.js'
+import { send } from '../utils/sendEmail.js'
 import md5 from 'js-md5'
 import FB from 'fb'
 
 const createParams = '{email,password,firstName,lastName,url,bio}'
 const createParamsFacebook = '{access_token}'
 
-const updateParamsPublic = '{firstName,lastName,url,bio,email}'
+const updateParamsPublic = '{firstName,lastName,tags,musicTags,isPrivateInfo}'
 
-const updateParamsPrivate = '{password,newPassword}'
+const updateParamsPrivate = '{newPassword,email}'
 
 
 var DZ = require('node-deezer');
 var deezer = new DZ();
 
+const createCode = () => {
+  let str = ''
+  for (var i = 0; i < 6; i++) {
+  str += Math.floor(Math.random() * Math.floor(10));
+  }
+  return str
+}
 
 export default class UserController {
 
-static test(req, res) {
-  console.log(req.query);
+  static test(req, res) {
+    console.log(req.query);
 
-  deezer.createSession('275462', '49ab00dbfafa0d19b44c21f95261f61a', req.query.code || 'frf633f3ffdefe016973fd48ebff7f44', function (err, result) {
-    console.log('err',err);
-    console.log('result1',result);
-  //res.json({ msg:'hello', access_token: result.accessToken })
-  res.send('<iframe scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=playlist&id=30595446" width="700" height="240"></iframe>')
+    deezer.createSession('275462', '49ab00dbfafa0d19b44c21f95261f61a', req.query.code || 'frf633f3ffdefe016973fd48ebff7f44', function (err, result) {
+      console.log('err',err);
+      console.log('result1',result);
+      //res.json({ msg:'hello', access_token: result.accessToken })
+      res.send('<iframe scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=playlist&id=30595446" width="700" height="240"></iframe>')
 
 
-  })
+    })
 
-}
-static facebookCreate(req, res) {
-  //TODO A FINIR MA GEUL !!!!
-  const params = filter(req.body, createParamsFacebook)
-  console.log(req.body.access_token);
-  FB.setAccessToken(req.body.access_token.toString())
-  FB.api('me', { fields: 'id,name,email,first_name,last_name', access_token: req.body.access_token.toString() }, function (res) {
-    console.log(res);
-});
-  console.log(params)
+  }
+  static facebookCreate(req, res) {
+    //TODO A FINIR MA GEUL !!!!
+    const params = filter(req.body, createParamsFacebook)
+    console.log(req.body.access_token);
+    FB.setAccessToken(req.body.access_token.toString())
+    FB.api('me', { fields: 'id,name,email,first_name,last_name', access_token: req.body.access_token.toString() }, ((fbRes) => {
+      console.log(fbRes.email);
+      User.findOne({ email: fbRes.email }).then(u => {
+        if (u) {
+          console.log('ici');
+          if (u.isFaceBookLogin === true) {
+            const token = generateToken(u)
+            return res.json({ token })
+          } else { return res.status(403).send({message: 'What the fuck are you doing ?'}) }
+        } else {
+          const user = new User({
+            email: fbRes.email,
+            isActive: true,
+            url: fbRes.url,
+            firstName: fbRes.first_name,
+            lastName: fbRes.last_name,
+            isEmailVerified: true,
+            isFaceBookLogin: true,
+          })
 
-}
+          user.save(err => {
+            if (err) { return res.status(500).send({ message: 'internal serveur error' }) }
+            const token = generateToken(user)
+            return res.json({ token })
+          })
+        }
+      }).catch((e) => {
+        return res.status(500).send({ message: 'Internal serveur error' })
+      })
+    }))
+
+  }
 
 
   static create (req, res) {
@@ -56,8 +89,9 @@ static facebookCreate(req, res) {
       if (u) { return res.status(400).send({ message: 'An account already exist with this e-mail.' }) }
 
       const email = params.email
-      const tokenMd5 = md5(email.toString().split('').reverse().join(''))
-      // send('no-reply@gringox.com', email, 'Account validation:', { url: `${req.headers.origin}/verifyAccount?email=${email}&token=${tokenMd5}`, name: params.firstName })
+      const tokenStr = createCode()
+      console.log(tokenStr);
+       send('no-reply@musiroom.com', email, 'Account validation:', { code: tokenStr, name: params.firstName })
 
       const user = new User({
         email: params.email,
@@ -66,8 +100,9 @@ static facebookCreate(req, res) {
         firstName: params.firstName,
         lastName: params.lastName,
         bio: params.bio,
+        isFaceBookLogin: false,
         isEmailVerified: false,
-        isEmailVerifiedToken: tokenMd5,
+        isEmailVerifiedToken: tokenStr,
       })
       user.generateHash(params.password)
       user.save(err => {
@@ -75,7 +110,8 @@ static facebookCreate(req, res) {
         const token = generateToken(user)
         return res.json({ token })
       }) /* istanbul ignore next */
-    }).catch(() => {
+    }).catch(e => {
+      console.log(e);
       return res.status(500).send({ message: 'Internal serveur error' })
     })
   }
@@ -86,7 +122,7 @@ static facebookCreate(req, res) {
 
       if (!user) { return res.status(404).send({ message: 'We did not find your account' }) }
       if (psw && !user.validPassword(psw)) { return res.status(403).send({ message: 'Wrong password' }) }
-    //  if (!user.isEmailVerified) { return res.status(403).send({ message: 'Plz verifie your email first' }) }
+      //  if (!user.isEmailVerified) { return res.status(403).send({ message: 'Plz verifie your email first' }) }
       //  if (!user.isActive) { return res.status(403).send({ message: 'account not acctivate' }) }
       const token = generateToken(user)
       return res.json({ token }) /* istanbul ignore next */
@@ -120,33 +156,32 @@ static facebookCreate(req, res) {
     }
   }
 
-  static updatePrivatePassword (req, res) {
+  static updatePrivate(req, res) {
 
     const params = filter(req.body, updateParamsPrivate)
     const paramsToUpdate = {}
-    User.findOne({ _id: req.params.id }).then((uTmp) => {
+    User.findOne({ email: params.email }).then((uTmp) => {
 
-      if (!uTmp.validPassword(params.password)) { return res.status(403).send({ message: 'Wrong password' }) }
+      if (uTmp) { return res.status(401).send({ message: 'This is email is used' }) }
 
       if (params.newPassword) { paramsToUpdate.password = bcrypt.hashSync(params.newPassword, 10) }
+      if (params.email) { paramsToUpdate.email = params.email }
       User.findOneAndUpdate({ _id: req.params.id }, { $set: paramsToUpdate }, { new: true }).then((user) => {
         const token = generateToken(user)
         return res.json({ message: 'Private information was successfully updated', token })
       })
       /* istanbul ignore next */
-    }).catch(() => {
-      return res.status(500).send({ message: 'Internal Server Error' })
-    })
+    }).catch(() => { return res.status(500).send({ message: 'Internal Server Error' }) })
   }
 
   static verifyEmail (req, res) {
 
-    if (!req.body.email || !req.body.token) { return res.status(403).json({ message: 'This is not a valid account, or was previously update' }) }
+    if (!req.params.email || !req.params.code) { return res.status(403).json({ message: 'This is not a valid account, or was previously update' }) }
 
-    const email = req.body.email.trim()
-    const token = req.body.token
+    const email = req.params.email.trim()
+    const code = req.params.code
 
-    User.findOneAndUpdate({ email, isEmailVerifiedToken: token },
+    User.findOneAndUpdate({ email, isEmailVerifiedToken: code },
       {
         isEmailVerified: true,
         isEmailVerifiedToken: null,
@@ -163,6 +198,6 @@ static facebookCreate(req, res) {
           })
         }
       }).catch(() => { return res.status(500).send({ message: 'Internal serveur error' }) })
-  }
+    }
 
-}
+  }

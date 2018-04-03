@@ -27,7 +27,7 @@ export function isLogin (req, res) {
   return new Promise((resolve) => {
     const token = req.headers['x-access-token']
     jwt.verify(token, config.local.jwtSecret, (err, decode) => {
-      if (err || decode._id !== req.params.id) { return res.status(403).send({ message: 'forbindden' }) }
+      if (err || (decode.id !== req.params.id && decode._id !== req.params.id)) { return res.status(403).send({ message: 'forbindden' }) }
       resolve()
     })
   })

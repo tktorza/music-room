@@ -8,12 +8,15 @@ const UserSchema = new mongoose.Schema({
   role: Number,
   bio: String,
   isActive: { type: Boolean, default: false },
+  isFaceBookLogin: { type: Boolean, default: false },
   url: String,
   firstName: String,
   lastName: String,
   socketId: String,
   isEmailVerified: { type: Boolean, default: false },
   isEmailVerifiedToken: String,
+  isPrivateInfo: { type: Boolean, default: false },
+  musicTags: Array
 }, {
   timestamps: true,
 })

@@ -21,6 +21,9 @@ const intialStatePlaylist = {
   playlists: [],
   nbr: 0,
 }
+const intialStateNotife = {
+  message: ''
+}
 
 
 
@@ -54,6 +57,17 @@ export default class reducer {
         return updatePlaylist(state, action.data)
     default:
       return state
+    }
+  }
+
+  static notife (state = fromJS(intialStateNotife), action) {
+    switch (action.type) {
+      case 'client/addNotife':
+        return state.setIn(['message'], fromJS(action.data.message))
+      case 'client/delNotife':
+        return state.setIn(['message'], fromJS(''))
+      default:
+        return state
     }
   }
 

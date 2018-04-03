@@ -108,8 +108,8 @@ export default [
   */
   {
     method: 'POST',
-    path: '/user/update/privatePassword/:id',
-    handler: UserController.updatePrivatePassword,
+    path: '/user/update/private/:id',
+    handler: UserController.updatePrivate,
     validator: [isLogin],
   },
 
@@ -130,8 +130,8 @@ export default [
   * @apiError (Bad Request 403 token is invalid) {String} message Return This is not a valid account, or was previously update
   */
   {
-    method: 'POST',
-    path: '/user/verifyEmail',
+    method: 'PUT',
+    path: '/user/verifyEmail/:email/:code',
     handler: UserController.verifyEmail,
     validator: [],
   },

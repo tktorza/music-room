@@ -1,10 +1,10 @@
 import nodemailer from 'nodemailer'
 
-function emailTemplate (name, url) {
+function emailTemplate (name, code) {
   return `<html>
 
   <head>
-  <title>Gringox - Confirm your account!</title>
+  <title>Music-Room - Confirm your account!</title>
   <style>
   @font-face {
     font-family: 'Avenir';
@@ -96,16 +96,15 @@ function emailTemplate (name, url) {
   </td>
   </tr>
   </table>
-  <img src="https://s3.eu-central-1.amazonaws.com/webressources/LOGO_DEF.png" alt="Gringox" border="0" height="100" style="margin-top: 50px; margin-bottom: 50px;" />
   <table bgcolor="#e47f02" class="head" style="background: #e47f02;" cellpadding="0" cellspacing="0" border="0" border-collapse="collapse" width="100%">
   <tr>
   <td style="text-align: center;" colspan="3">
-  <h1>Welcome to Gringox</h1>
+  <h1>Welcome to Music-Room</h1>
 
   </td>
   </tr>
   <tr>
-  <td colspan="3" style="padding: 0px 80px; font-size: 20px; text-align: center;">Hi ${name}, Welcome to Gringox, please confirm your email address to get started.</td>
+  <td colspan="3" style="padding: 0px 80px; font-size: 20px; text-align: center;">Hi ${name}, Welcome to Music-Room, please confirm your email address to get started.</td>
   </tr>
   <tr>
   <td width="30%">&nbsp;</td>
@@ -113,7 +112,7 @@ function emailTemplate (name, url) {
   <table cellpadding="0" cellspacing="0" border-collapse="collapse" class="button" width="100%">
   <tr>
   <td>
-  <a href="${url}" style="font-size: 15px;">Confirm my email</a>
+  <p style="font-size: 15px;">Your code: ${code} </p>
   </td>
   </tr>
   </table>
@@ -128,8 +127,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // secure:true for port 465, secure:false for port 587
   auth: {
-    user: 'gringox.sup@gmail.com',
-    pass: 'GringoxSup@',
+    user: 'ziqRoom@gmail.com',
+    pass: '1234@Music',
   },
 })
 
@@ -138,7 +137,7 @@ export function send (from, to, subject, body) {
     from: `<${from}>`,
     to: `${to}`,
     subject: `${subject}`,
-    html: emailTemplate(body.name, body.url),
+    html: emailTemplate(body.name, body.code),
   }
 
   transporter.sendMail(emailBody, (error, info) => {

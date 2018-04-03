@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AuthSession } from 'expo'
 import { Actions } from 'react-native-router-flux'
 
-import { Button } from 'react-native-ui-lib'
+import {  Button } from 'nachos-ui'
+
 
 
 //TODO A FINNIR
@@ -19,16 +20,13 @@ export default class DeezerLogin extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button text70 white blue30 label={'Deezer'} onPress={this._handlePressAsync} />
-        {this.state.result ? (
-          <Text>{JSON.stringify(this.state.result)}</Text>
-        ) : null}
-        <Button text70 white blue30 label={'Logout'} onPress={() => {
+        <Button kind='squared' onPress={this._handlePressAsync}>Dezzer</Button>
+        {this.state.result ? ( <Text>{JSON.stringify(this.state.result)}</Text> ) : null}
+        <Button kind='squared' onPress={() => {
            Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
-           console.log('del token');
              Actions.login()
            })
-        }} />
+        }}>Log-out</Button>
         </View>
     );
   }
@@ -45,7 +43,10 @@ export default class DeezerLogin extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    marginTop: 30,
   },
 });

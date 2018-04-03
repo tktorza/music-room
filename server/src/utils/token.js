@@ -15,6 +15,9 @@ export function generateToken (user) {
     firstName: user.firstName,
     lastName: user.lastName,
     id: user._id,
+    musicTags: user.musicTags,
+    isPrivateInfo: user.isPrivateInfo,
+    isActive: user.isActive
   }
   let expiresIn = 60 * 60 * 24 // 24 hours
   if (process.env.NODE_ENV !== 'production') {
