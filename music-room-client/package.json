@@ -2,7 +2,7 @@
   "name": "music-room-client",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "fix": "yarn add && rm -fr node_modules/nachos-ui/node_modules/react-native",
+    "fix": "yarn && rm -fr node_modules/nachos-ui/node_modules/react-native",
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
