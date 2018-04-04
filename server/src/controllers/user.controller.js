@@ -39,7 +39,6 @@ export default class UserController {
 
   }
   static facebookCreate (req, res) {
-    // TODO A FINIR MA GEUL !!!!
     const params = filter(req.body, createParamsFacebook)
     console.log(req.body.access_token)
     FB.setAccessToken(req.body.access_token.toString())
