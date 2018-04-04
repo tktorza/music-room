@@ -12,7 +12,7 @@
 * ```yarn lint```
 
 ## client
-* ```yarn fix```
+* ```yarn fix``` || ```npm run fix```
 * ```cd ios && pod install``` ```(brew install cocoapod)```
 * ```expo start``` ```(npm install -g expo)```
 * Run simulateur in Xcode
