@@ -12,21 +12,20 @@ import Toaster from '../toaster/index.js'
 
 class Home extends Component {
 
-
-componentWillMount() {
-  Expo.SecureStore.getItemAsync('token', {}).then(token => {
-  this.props.dispatch({
-      type: 'client/verifeUser',
-      data: token,
+  componentWillMount () {
+    Expo.SecureStore.getItemAsync('token', {}).then(token => {
+      this.props.dispatch({
+        type: 'client/verifeUser',
+        data: token,
+      })
     })
-  })
-}
+  }
   state = {
     mode: 0,
   }
 
   serviceMode = () => { this.setState({ mode: 0 }) }
-  playListMode = () => { this.setState({ mode: 1}); this.props.dispatch(getPlayList(this.props.user.id)) }
+  playListMode = () => { this.setState({ mode: 1 }); this.props.dispatch(getPlayList(this.props.user.id)) }
   settingsMode= () => { this.setState({ mode: 2 }) }
   render () {
 
@@ -40,17 +39,17 @@ componentWillMount() {
         alignItems: 'center',
       }}>
 
-    {mode === 0 && (
-      <Text>{mode}</Text>
-    )}
-    {mode === 1 && (
-        <Playlist  playlist={playlist} user={user}/>
-    )}
-    {mode === 2 && (
-      <Settings />
-    )}
+        {mode === 0 && (
+          <Text>{mode}</Text>
+        )}
+        {mode === 1 && (
+          <Playlist playlist={playlist} user={user}/>
+        )}
+        {mode === 2 && (
+          <Settings />
+        )}
         <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />
-        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )

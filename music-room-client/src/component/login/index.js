@@ -40,8 +40,8 @@ class Login extends Component {
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Login' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.singup() }} label='Singup' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.resetPass() }} label='reset-password' />
-        <FacebookLogin  />
-        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+        <FacebookLogin />
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )

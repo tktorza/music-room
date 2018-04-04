@@ -9,7 +9,7 @@ import Toaster from '../toaster/index.js'
 class Code extends Component {
 
   state = {
-    code: ''
+    code: '',
   }
   render () {
 
@@ -17,25 +17,24 @@ class Code extends Component {
 
     return (
       <View flex paddingH-25 paddingT-120>
-      <Input
-      style={{ margin: 15 }}
-      placeholder={'code'}
-      value={this.state.code}
-      onChangeText={value => this.setState({ code: value })}
-      />
-          <Button onPress={() => {this.props.dispatch(verifeUser(code, this.props.email))}}>Verifie</Button>
-          {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+        <Input
+          style={{ margin: 15 }}
+          placeholder={'code'}
+          value={this.state.code}
+          onChangeText={value => this.setState({ code: value })}
+        />
+        <Button onPress={() => { this.props.dispatch(verifeUser(code, this.props.email)) }}>Verifie</Button>
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )
   }
 }
 
-
 const mapStateToProps = state => {
   return {
-    notife : state.notife.toJS()
-   }
+    notife: state.notife.toJS(),
+  }
 }
 
 const mapDispatchToProps = dispatch => {

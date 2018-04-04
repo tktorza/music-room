@@ -21,7 +21,7 @@ export function loginUser (event) {
 export function singupUser (event) {
   return dispatch => {
     callApi('user/create', 'post', event).then(() => {
-      Actions.code({email: event.email})
+      Actions.code({ email: event.email })
     }).catch(e => {
       dispatch({
         type: 'client/addNotife',
@@ -30,11 +30,10 @@ export function singupUser (event) {
     })
   }
 }
-
 
 export function facebookLoginAction (event) {
   return dispatch => {
-    callApi(`user/create/facebook`, 'post',event.params).then(body => {
+    callApi('user/create/facebook', 'post', event.params).then(body => {
 
       dispatch({
         type: 'http/login',
@@ -49,9 +48,9 @@ export function facebookLoginAction (event) {
   }
 }
 
-export function updateUser(event, userId) {
+export function updateUser (event, userId) {
   return dispatch => {
-    callApi(`user/update/${userId}`, 'post',event).then(body => {
+    callApi(`user/update/${userId}`, 'post', event).then(body => {
       dispatch({
         type: 'http/login',
         data: body,
@@ -65,9 +64,9 @@ export function updateUser(event, userId) {
   }
 }
 
-export function updateUserPrivate(event, userId) {
+export function updateUserPrivate (event, userId) {
   return dispatch => {
-    callApi(`user/update/private/${userId}`, 'post',event).then(body => {
+    callApi(`user/update/private/${userId}`, 'post', event).then(body => {
       dispatch({
         type: 'http/login',
         data: body,
@@ -81,7 +80,7 @@ export function updateUserPrivate(event, userId) {
   }
 }
 
-export function verifeUser(code, email) {
+export function verifeUser (code, email) {
   return dispatch => {
     callApi(`user/verifyEmail/${email}/${code}`, 'put').then(body => {
       dispatch({
@@ -97,10 +96,10 @@ export function verifeUser(code, email) {
   }
 }
 
-export function resetPass(email) {
+export function resetPass (email) {
   return dispatch => {
     callApi(`user/resetPassword/${email}`, 'get').then(body => {
-      console.log(body);
+      console.log(body)
     }).catch(e => {
       dispatch({
         type: 'client/addNotife',
@@ -110,7 +109,7 @@ export function resetPass(email) {
   }
 }
 
-export function verifyNewPassword(email,newPassword, code) {
+export function verifyNewPassword (email, newPassword, code) {
   return dispatch => {
     callApi(`user/resetPassword/${email}/${code}/${newPassword}`, 'put').then(body => {
       dispatch({

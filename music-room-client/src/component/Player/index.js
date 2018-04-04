@@ -9,37 +9,34 @@ import request from 'superagent'
 
 import { Icon } from 'react-native-elements'
 
-
 class Player extends Component {
 
   render () {
 
-
     const { playSong, previousSong, nextSong } = this.props
 
     return (
-      <View style={{display:'flex', flexDirection: 'row', justifyContent:'center'}}>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
-      <Icon
-      raised
-      name='skip-previous'
-      type='skip-previous'
-      color='#f50'
-      onPress={previousSong} />
+        <Icon
+          raised
+          name='skip-previous'
+          type='skip-previous'
+          color='#f50'
+          onPress={previousSong} />
 
-
-      <Icon
-      raised
-      name='play-arrow'
-      type='play-arrow'
-      color='#f50'
-      onPress={playSong} />
-      <Icon
-      raised
-      name='skip-next'
-      type='skip-next'
-      color='#f50'
-      onPress={nextSong} />
+        <Icon
+          raised
+          name='play-arrow'
+          type='play-arrow'
+          color='#f50'
+          onPress={playSong} />
+        <Icon
+          raised
+          name='skip-next'
+          type='skip-next'
+          color='#f50'
+          onPress={nextSong} />
 
       </View>
     )

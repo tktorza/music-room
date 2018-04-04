@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Toast } from 'react-native-ui-lib'
 
 class Toaster extends Component {
-  render() {
-    const {msg} = this.props
+  render () {
+    const { msg } = this.props
     return (
       <Toast
-         message={msg}
-         position="bottom"
-         visible={true}
-         actions={[{label: 'Close', onPress: () => { this.props.dispatch({type: 'client/delNotife'}) } }]}
-       />
+        message={msg}
+        position='bottom'
+        visible={true}
+        actions={[{ label: 'Close', onPress: () => { this.props.dispatch({ type: 'client/delNotife' }) } }]}
+      />
     )
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { View, TextInput, Text, Button, } from 'react-native-ui-lib'
+import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
 import { RadioGroup } from 'nachos-ui'
 import { createPlayList } from '../../actions/playlist.js'
@@ -15,17 +15,16 @@ class NewPlaylist extends Component {
   )
   renderRadioGroup = ({ input, label, meta: { touched, error }, ...custom }) => (
     <RadioGroup
-    onChange= {(a, b) => { input.onChange(a, b)}}
-    options={['private', 'public']}
+      onChange= {(a, b) => { input.onChange(a, b) }}
+      options={['private', 'public']}
     />
   )
-
 
   onSubmit = event => {
 
     event.users = []
-     event.users.push({id:this.props.user.id, role: 'RW', email: this.props.user.email, super: true})
-     this.props.dispatch(createPlayList(event))
+    event.users.push({ id: this.props.user.id, role: 'RW', email: this.props.user.email, super: true })
+    this.props.dispatch(createPlayList(event))
   }
 
   render () {
@@ -34,7 +33,7 @@ class NewPlaylist extends Component {
 
     return (
       <View flex paddingH-25 paddingT-120>
-      <Text blue50 text10>New track</Text>
+        <Text blue50 text10>New track</Text>
         <Field
           label={'Name'}
           name={'name'}
@@ -52,9 +51,8 @@ class NewPlaylist extends Component {
           component={this.renderRadioGroup}
         />
 
-        <Button onPress={handleSubmit(this.onSubmit)} label="Create"/>
-        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
-
+        <Button onPress={handleSubmit(this.onSubmit)} label='Create'/>
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )

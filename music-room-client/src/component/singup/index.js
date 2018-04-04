@@ -46,7 +46,7 @@ class Singup extends Component {
         />
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Singup' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.login() }} label='login' />
-        {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )
@@ -69,8 +69,8 @@ Singup = reduxForm({
 
 const mapStateToProps = state => {
   return {
-    notife: state.notife.toJS()
-   }
+    notife: state.notife.toJS(),
+  }
 }
 
 const mapDispatchToProps = dispatch => {

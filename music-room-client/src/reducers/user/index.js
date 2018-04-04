@@ -2,11 +2,10 @@ import { fromJS } from 'immutable'
 import jwtDecode from 'jwt-decode'
 import { Actions } from 'react-native-router-flux'
 
-
 export function login (state, data) {
 
   const user = jwtDecode(data.token)
-  Expo.SecureStore.setItemAsync('token',data.token, {})
+  Expo.SecureStore.setItemAsync('token', data.token, {})
   Actions.home()
   return state.setIn(['email'], fromJS(user.email))
     .setIn(['isAuthenticated'], fromJS(true))

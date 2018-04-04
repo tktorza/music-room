@@ -13,17 +13,17 @@ class Singup extends Component {
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
 
     <Input
-    style={{ margin: 15 }}
-    placeholder={label}
-    {...input}
-    {...custom}
+      style={{ margin: 15 }}
+      placeholder={label}
+      {...input}
+      {...custom}
     />
   )
   renderRadioGroup = ({ input, label, meta: { touched, error }, ...custom }) => (
     <RadioGroup
-    style={{ margin: 15 }}
-    onChange= {(a, b) => { input.onChange(a, b)}}
-    options={['read', 'read&&write']}
+      style={{ margin: 15 }}
+      onChange= {(a, b) => { input.onChange(a, b) }}
+      options={['read', 'read&&write']}
     />
   )
   onSubmit = event => {
@@ -37,7 +37,7 @@ class Singup extends Component {
     const { handleSubmit } = this.props
 
     return (
-      <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
+      <View style={{ flex: 1, width: '90%', alignSelf: 'center' }}>
         <Field
           label={'Email'}
           name={'email'}
@@ -49,8 +49,8 @@ class Singup extends Component {
           component={this.renderTextField}
           secureTextEntry={true}
         />
-          <Button  kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
-          {this.props.notife.message  !== '' && (  <Toaster msg={this.props.notife.message} /> )}
+        <Button kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
+        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )
@@ -59,7 +59,6 @@ class Singup extends Component {
 
 const validate = values => {
   const errors = {}
-
 
   return errors
 }
@@ -71,10 +70,10 @@ Singup = reduxForm({
 
 const mapStateToProps = state => {
   return {
-      user: state.user.toJS(),
-      initialValues: state.user.toJS(),
-      notife: state.notife.toJS(),
-   }
+    user: state.user.toJS(),
+    initialValues: state.user.toJS(),
+    notife: state.notife.toJS(),
+  }
 }
 const mapDispatchToProps = dispatch => {
   return { dispatch }

@@ -22,11 +22,8 @@ const intialStatePlaylist = {
   nbr: 0,
 }
 const intialStateNotife = {
-  message: ''
+  message: '',
 }
-
-
-
 
 export default class reducer {
 
@@ -54,7 +51,7 @@ export default class reducer {
     case 'http/addSongPlayList':
       return updatePlaylist(state, action.data)
     case 'http/updatePlaylist':
-        return updatePlaylist(state, action.data)
+      return updatePlaylist(state, action.data)
     default:
       return state
     }
@@ -62,12 +59,12 @@ export default class reducer {
 
   static notife (state = fromJS(intialStateNotife), action) {
     switch (action.type) {
-      case 'client/addNotife':
-        return state.setIn(['message'], fromJS(action.data))
-      case 'client/delNotife':
-        return state.setIn(['message'], fromJS(''))
-      default:
-        return state
+    case 'client/addNotife':
+      return state.setIn(['message'], fromJS(action.data))
+    case 'client/delNotife':
+      return state.setIn(['message'], fromJS(''))
+    default:
+      return state
     }
   }
 

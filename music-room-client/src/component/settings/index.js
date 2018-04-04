@@ -23,15 +23,14 @@ class Settings extends Component {
         width: '100%',
         top: '10%',
       }}>
-        <Text style={{marginBottom: 20}}>{'Publique information'}</Text>
+        <Text style={{ marginBottom: 20 }}>{'Publique information'}</Text>
         <Public />
-        <Text style={{marginTop: 20, marginBottom: 20}}>{'Private information'}</Text>
+        <Text style={{ marginTop: 20, marginBottom: 20 }}>{'Private information'}</Text>
         <Private />
         <DeezerLogin />
       </ScrollView>
     )
   }
 }
-
 
 export default Settings

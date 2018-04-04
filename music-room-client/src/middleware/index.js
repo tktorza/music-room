@@ -16,7 +16,7 @@ function forceLogOut () {
     data: {},
   }
 }
-function verifeUser(token) {
+function verifeUser (token) {
   return {
     type: 'client/verifeUser',
     data: token,
@@ -33,7 +33,7 @@ const simpleMiddleWare = socket => ({ dispatch, getState }) => {
         const userState = getState().user.toJS()
         const tmpToken = jwtDecode(token)
         if (tmpToken.isActive) {
-        if (userState.id === '') { dispatch(verifeUser(token)) }
+          if (userState.id === '') { dispatch(verifeUser(token)) }
           Actions.home()
         }
       }

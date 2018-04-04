@@ -10,28 +10,6 @@ export function callApi (endpoint, method = 'get', body, psw) {
 
       if (method === 'post') {
         request.post(`${serverUrl}/${endpoint}`)
-        .send(body)
-        .set('Accept', 'application/json')
-        .set('X-Access-Token', token || '')
-        .then((res) => { const body = JSON.parse(res.text); resolve(body) })
-        .catch(e => {
-          reject(e.response.body.message || e.message)
-        })
-      }
-      if (method === 'get') {
-        request.get(`${serverUrl}/${endpoint}`)
-        .set('Accept', 'application/json')
-        .set('X-Access-Token', token || '')
-        .set('X-Pass', psw)
-        .then((res) => {
-          const body = JSON.parse(res.text); resolve(body) })
-          .catch(e => {
-            reject(e.response.body.message || e.message)
-          })
-        }
-
-        if (method === 'put') {
-          request.put(`${serverUrl}/${endpoint}`)
           .send(body)
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
@@ -39,9 +17,32 @@ export function callApi (endpoint, method = 'get', body, psw) {
           .catch(e => {
             reject(e.response.body.message || e.message)
           })
-        }
-        if (method === 'delete') {
-          request.delete(`${serverUrl}/${endpoint}`)
+      }
+      if (method === 'get') {
+        request.get(`${serverUrl}/${endpoint}`)
+          .set('Accept', 'application/json')
+          .set('X-Access-Token', token || '')
+          .set('X-Pass', psw)
+          .then((res) => {
+            const body = JSON.parse(res.text); resolve(body)
+          })
+          .catch(e => {
+            reject(e.response.body.message || e.message)
+          })
+      }
+
+      if (method === 'put') {
+        request.put(`${serverUrl}/${endpoint}`)
+          .send(body)
+          .set('Accept', 'application/json')
+          .set('X-Access-Token', token || '')
+          .then((res) => { const body = JSON.parse(res.text); resolve(body) })
+          .catch(e => {
+            reject(e.response.body.message || e.message)
+          })
+      }
+      if (method === 'delete') {
+        request.delete(`${serverUrl}/${endpoint}`)
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
           .then(() => {
@@ -50,7 +51,7 @@ export function callApi (endpoint, method = 'get', body, psw) {
           .catch(e => {
             reject(e.response.body.message || e.message)
           })
-        }
-      })
+      }
     })
-  }
+  })
+}
