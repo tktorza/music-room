@@ -13,8 +13,8 @@
 
 ## client
 * ```yarn fix```
-* ```cd ios && pod install```
-* ```expo start```
+* ```cd ios && pod install``` ```(brew install cocoapod)```
+* ```expo start``` ```(npm install -g expo)```
 * Run simulateur in Xcode
 * Be patient.
 * GO!
