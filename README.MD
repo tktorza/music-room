@@ -12,7 +12,7 @@
 * ```yarn lint```
 
 ## client
-* ```react-native run-ios --simulator="iPhone 6"```.
+* https://docs.expo.io/versions/latest/guides/expokit.html
 * Be patient.
 * GO!
 
