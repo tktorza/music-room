@@ -12,9 +12,13 @@
 * ```yarn lint```
 
 ## client
-* https://docs.expo.io/versions/latest/guides/expokit.html
+* yarn fix
+* cd ios && pod install
+* expo start
+* Run simulateur in Xcode
 * Be patient.
 * GO!
+* (https://docs.expo.io/versions/latest/guides/expokit.html)
 
 ## server
 * set up done just need to add feature
