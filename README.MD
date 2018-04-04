@@ -12,9 +12,9 @@
 * ```yarn lint```
 
 ## client
-* yarn fix
-* cd ios && pod install
-* expo start
+* ```yarn fix```
+* ```cd ios && pod install```
+* ```expo start```
 * Run simulateur in Xcode
 * Be patient.
 * GO!
