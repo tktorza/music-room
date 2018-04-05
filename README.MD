@@ -15,6 +15,7 @@
 * ```yarn fix``` || ```npm run fix```
 * ```cd ios && pod install``` ```(brew install cocoapod)```
 * ```expo start``` ```(npm install -g expo)```
+*```open ios/music-room-client.xcworkspace/```
 * Run simulateur in Xcode
 * Be patient.
 * GO!
