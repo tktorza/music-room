@@ -46,6 +46,7 @@ class Home extends Component {
           <Playlist playlist={playlist} user={user}/>
         )}
         {mode === 2 && (
+
           <Settings />
         )}
         <Menu playListMode={this.playListMode} settingsMode={this.settingsMode} serviceMode={this.serviceMode} />

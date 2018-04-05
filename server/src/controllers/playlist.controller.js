@@ -6,6 +6,30 @@ import _ from 'lodash'
 const createParams = '{name,description,type,users,songs}'
 const updateParamsPublic = '{songs,users,description,type}'
 const updateParamsPrivate = '{type,email}'
+const imporParams = '{playListArray}'
+
+const test = (list) => {
+  return new Promise((resolve, reject) => {
+
+
+    Playlist.findOne({ name: list.name }).then(u => {
+      if (u) { reject('An playList already exist with this name.') }
+
+      const playList = new Playlist({
+        name: list.name,
+        description: list.description,
+        type: list.type,
+        users: list.users,
+      })
+
+      playList.save(err => {
+        if (err) { reject('internal serveur error') }
+        resolve()
+      })
+    })
+  })
+}
+
 
 export default class PlaylistController {
 
@@ -178,6 +202,28 @@ export default class PlaylistController {
 
         return res.json({ message: 'Your playlist', playlist })
       }).catch(() => { return res.status(500).send({ message: 'Internal serveur error' }) })
+    })
+  }
+
+  static importPlayList(req, res) {
+    const params = filter(req.body, playListArray)
+    const promiseArra = []
+    params.playListArray.forEach(e => { promiseArra.push(test(e)) })
+    Promise.all(promiseArra).then(e => {
+
+      Playlist.find().then(playLists => {
+
+        const arrayToSend = []
+
+        playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'private') { arrayToSend.push(playList) } }) })
+        playLists.forEach(playList => { playList.users.forEach(u => { if (playList.type === 'public') { arrayToSend.push(playList) } }) })
+        playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'public') { arrayToSend.push(playList) } }) })
+        playLists.forEach(p => {
+          p.songs = _.sortBy(p.songs, ['grade'])
+
+        })
+        return res.json({ message: 'Your playLists', playLists: arrayToSend }) /* istanbul ignore next */
+      })
     })
   }
 }

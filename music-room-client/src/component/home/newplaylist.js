@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import { RadioGroup } from 'nachos-ui'
 import { createPlayList } from '../../actions/playlist.js'
 import Toaster from '../toaster/index.js'
+import { getPlaylists, getPlaylistTracks } from '../../utils/deezerService.js'
 
 class NewPlaylist extends Component {
 
@@ -51,7 +52,8 @@ class NewPlaylist extends Component {
           component={this.renderRadioGroup}
         />
 
-        <Button onPress={handleSubmit(this.onSubmit)} label='Create'/>
+        <Button onPress={ handleSubmit(this.onSubmit) } label='Create'/>
+        <Button onPress={() => { Actions.importList() }} label='Import Play list'/>
         {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>

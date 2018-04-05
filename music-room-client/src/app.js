@@ -13,6 +13,7 @@ import Singup from './component/singup'
 import Code from './component/singup/code'
 import EditPlaylist from './component/home/editplaylist.js'
 import ResetPass from './component/login/resetPass'
+import ImportList from './component/home/importPlaylist.js'
 
 class App extends Component {
   render () {
@@ -53,6 +54,11 @@ class App extends Component {
             component={ResetPass}
             hideNavBar={false}
             title='password reset'
+          />
+          <Scene key='importList'
+            component={ImportList}
+            hideNavBar={false}
+            title='Import your play list'
           />
         </Stack>
       </Router>

@@ -2,14 +2,12 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { AuthSession } from 'expo'
 import { Actions } from 'react-native-router-flux'
+import { connectDeezer } from '../../utils/deezerService.js'
 
 import { Button } from 'nachos-ui'
 
 // TODO A FINNIR
 
-const APP_ID = '275462'
-const APP_SECRET = '49ab00dbfafa0d19b44c21f95261f61a'
-const MY_URL = 'http://localhost:8080/'
 export default class DeezerLogin extends React.Component {
   state = {
     result: null,
@@ -18,8 +16,7 @@ export default class DeezerLogin extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Button kind='squared' onPress={this._handlePressAsync}>Dezzer</Button>
-        {this.state.result ? (<Text>{JSON.stringify(this.state.result)}</Text>) : null}
+        <Button kind='squared'  onPress={() => { connectDeezer().then(res =>{ console.log(res) }) }}>{'Deezer'}</Button>
         <Button kind='squared' onPress={() => {
           Expo.SecureStore.deleteItemAsync('token', {}).then(() => {
             Actions.login()
@@ -28,14 +25,6 @@ export default class DeezerLogin extends React.Component {
       </View>
     )
   }
-
-  _handlePressAsync = async () => {
-    const redirectUrl = AuthSession.getRedirectUrl()
-    const result = await AuthSession.startAsync({
-      authUrl: `https://connect.deezer.com/oauth/auth.php?app_id=${APP_ID}&redirect_uri=http://localhost:8080/test&perms=basic_access,email,offline_access,manage_library,manage_community,delete_library,listening_history`,
-    })
-    this.setState({ result })
-  };
 }
 
 const styles = StyleSheet.create({

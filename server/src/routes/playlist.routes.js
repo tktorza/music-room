@@ -125,4 +125,10 @@ nIqUE LA DocC
     handler: PlaylistController.deleteUser,
     validator: [isLogin],
   },
+  {
+    method: 'POST',
+    path: 'playlist/import/list/:userId',
+    handler: PlaylistController.importPlayList,
+    validator: [isLogin],
+  },
 ]

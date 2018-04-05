@@ -15,13 +15,12 @@ class Settings extends Component {
     const { handleSubmit } = this.props
 
     return (
+      <View style={{height: '90%', width: '100%' }}>
       <ScrollView style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
         width: '100%',
-        top: '10%',
       }}>
         <Text style={{ marginBottom: 20 }}>{'Publique information'}</Text>
         <Public />
@@ -29,6 +28,8 @@ class Settings extends Component {
         <Private />
         <DeezerLogin />
       </ScrollView>
+      </View>
+
     )
   }
 }

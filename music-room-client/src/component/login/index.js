@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import { loginUser } from '../../actions/user.js'
 import FacebookLogin from './facebookLogin.js'
 import Toaster from '../toaster/index.js'
-import { connectDeezer, playTrack } from '../../utils/deezerService.js'
+// import { connectDeezer, playTrack, checkSession } from '../../utils/deezerService.js'
 
 
 class Login extends Component {
@@ -41,17 +41,6 @@ class Login extends Component {
         <Button text70 white background-orange30 onPress={handleSubmit(this.onSubmit)} label='Login' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.singup() }} label='Singup' />
         <Button link text70 orange30 marginT-20 onPress={() => { Actions.resetPass() }} label='reset-password' />
-        <Button link text70 orange30 marginT-20 onPress={() => {
-          connectDeezer().then(t => {
-            console.log('t', t);
-          })
-         }} label='test' />
-
-         <Button link text70 orange30 marginT-20 onPress={() => {
-           playTrack('3135553').then(t => {
-             console.log('t', t);
-           })
-         }} label='play' />
         <FacebookLogin />
         {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 

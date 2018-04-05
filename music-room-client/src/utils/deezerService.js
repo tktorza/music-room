@@ -1,4 +1,3 @@
-
 import { NativeModules } from 'react-native'
 
 const DeezerManager = NativeModules.DeezerManager
@@ -9,12 +8,14 @@ export function connectDeezer() {
   })
 }
 
-export function checkSession() { DeezerManager.isSessionValid(cb) }
+export function checkSession(cb) { DeezerManager.isSessionValid(cb) }
 
 export function playTrack(id) {
+  console.log('playTrack id =>', id);
   return new Promise((resolve, reject) => {
-    DeezerManager.playTrack(id).then(res => {
-      console.log('playTrack=>',res);
+    DeezerManager.playTrack(id).then((res,err) => {
+      console.log('res of playTrack =>',res);
+      console.log('err of playTrack =>',err);
       resolve(res)
     })
   })

@@ -74,7 +74,6 @@ export function updatePlaylistPrivate (data, playlistId, userId) {
 
   return dispatch => {
     callApi(`playlist/updatePrivate/${playlistId}/${userId}`, 'post', data).then(body => {
-      console.log(body)
       dispatch({
         type: 'http/updatePlaylist',
         data: { body, playlistId },
@@ -89,10 +88,8 @@ export function updatePlaylistPrivate (data, playlistId, userId) {
 }
 
 export function deleteAUser (playlistId, userId, userIdToDelete) {
-  console.log('helelelel')
   return dispatch => {
     callApi(`playlist/delete/user/${playlistId}/${userId}/${userIdToDelete}`, 'put').then(body => {
-      console.log(body)
       dispatch({
         type: 'http/updatePlaylist',
         data: { body, playlistId },
@@ -104,4 +101,21 @@ export function deleteAUser (playlistId, userId, userIdToDelete) {
       })
     })
   }
+}
+
+export function importDeezerList(userId, data) {
+  console.log('data=>',data);
+  // return dispatch => {
+  //   callApi(`playlist/import/list/${userId}`,'post', data).then(body => {
+  //     dispatch({
+  //       type: 'http/updatePlaylist',
+  //       data: { body, playlistId },
+  //     })
+  //   }).catch(e => {
+  //     dispatch({
+  //       type: 'client/addNotife',
+  //       data: e,
+  //     })
+  //   })
+  // }
 }

@@ -10,6 +10,8 @@ import Player from '../Player'
 import AddUser from './adduser.js'
 import { Icon } from 'react-native-elements'
 import Toaster from '../toaster/index.js'
+import { playTrack, pause, play } from '../../utils/deezerService.js'
+
 
 const soundObject = new Expo.Audio.Sound()
 
@@ -25,6 +27,11 @@ class Playlist extends Component {
     currentSong: '',
   }
 
+playTrackWrapper = (id) => {
+  const { isPlaying } = this.state
+  if (isPlaying) { playTrack(id).then((e) => { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id}) }) })}
+  else { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id}) }) }
+}
   callDezzerapi = (value) => {
     this.setState({ value })
     request.get(`https://api.deezer.com/search?q=${value}`)
@@ -33,64 +40,17 @@ class Playlist extends Component {
         this.setState({ info: res.body.data })
       })
   }
-  getEachSong = (ids) => {
-    const promiseArray = []
-    const funcArr = (id) => {
-      return new Promise((resolve, reject) => {
-        request.get(`https://api.deezer.com/track/${id}`)
-          .set('Accept', 'application/json')
-          .then((res) => {
-            resolve(res.body)
-          })
-      })
-    }
-    ids.forEach(s => {
-      promiseArray.push(funcArr(s.id))
-    })
-    Promise.all(promiseArray).then(res => {
-      this.setState({ currentList: res })
-    })
-  }
-  playSong = (id) => {
-    console.log(id)
+  pausePlay = () => {
     const { isPlaying, currentSong } = this.state
     const { playlist } = this.props
-
-    if (!id) {
+    if (!currentSong) {
       const index1 = playlist.playlists.findIndex(e => e._id === this.props.playlistId)
-      id = playlist.playlists[index1].songs[0].id
-    }
-    if (!isPlaying) {
-      request.get(`https://api.deezer.com/track/${id}`)
-        .set('Accept', 'application/json')
-        .then((ziq) => {
-          soundObject.loadAsync({ uri: ziq.body.preview }).then(res => {
-            soundObject.playAsync().then(test => {
-              this.setState({ isPlaying: true, currentSong: id })
-            })
-          })
-        }).catch(e => {
-          console.log(e)
-        })
+      const song = playlist.playlists[index1].songs[0]
+      this.playTrackWrapper(song.id)
     } else {
-      soundObject.unloadAsync().then(res => {
-        this.setState({ isPlaying: false })
-        if (id !== currentSong) {
-          request.get(`https://api.deezer.com/track/${id}`)
-            .set('Accept', 'application/json')
-            .then((ziq) => {
-              soundObject.loadAsync({ uri: ziq.body.preview }).then(res => {
-                soundObject.playAsync().then(test => {
-                  this.setState({ isPlaying: true, currentSong: id })
-                })
-              })
-            }).catch(e => {
-              console.log(e)
-            })
-        }
 
-      })
-    }
+    if (!isPlaying) { this.setState({ isPlaying: !isPlaying }); play() } else { this.setState({ isPlaying: !isPlaying }); pause() }
+  }
   }
 
   nextSong = () => {
@@ -105,10 +65,8 @@ class Playlist extends Component {
     let index = songs.findIndex(e => e.id == currentSong)
     index += 1
 
-    soundObject.unloadAsync().then(res => {
-      this.setState({ isPlaying: false })
-      this.playSong(songs[index].id)
-    })
+    this.playTrackWrapper(songs[index].id)
+
   }
 
   previousSong = () => {
@@ -118,12 +76,11 @@ class Playlist extends Component {
 
     const songs = playlist.playlists[index1].songs
     const index = songs.findIndex(e => e.id == currentSong)
+    this.playTrackWrapper(songs[index - 1].id)
 
-    soundObject.unloadAsync().then(res => {
-      this.setState({ isPlaying: false, currentSong: songs[index - 1].id })
-      this.playSong(songs[index - 1].id)
-    })
+
   }
+
   updateGrade = (grade, songId) => {
 
     const { playlist, dispatch, user } = this.props
@@ -192,12 +149,12 @@ class Playlist extends Component {
                           size={15}
                           onPress={() => { if (key < playlist.playlists[index].songs.length - 1) { this.updateGrade(-1, s.id) } }} />
                       )}
-                      <Button kind='squared' iconName='md-musical-notes' onPress={() => { this.setState({ currentSong: s.id }); this.playSong(s.id) }}>{s.name}</Button>
+                      <Button kind='squared' iconName='md-musical-notes' onPress={() => { this.playTrackWrapper(s.id) }}>{s.name}</Button>
                     </View>)
                 })
               )}
             </ScrollView >
-            <Player previousSong={this.previousSong} nextSong={this.nextSong} playSong={() => { this.playSong(currentSong) }} />
+            <Player previousSong={this.previousSong} nextSong={this.nextSong} playSong={() => { this.pausePlay() }} />
           </View>
         )}
 
