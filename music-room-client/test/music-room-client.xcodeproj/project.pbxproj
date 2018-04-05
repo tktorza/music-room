@@ -1,0 +1,687 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		72E79E7B20760012007361BA /* DZRResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72E79E5A20760012007361BA /* DZRResources.bundle */; };
+		72E79E7C20760012007361BA /* libDeezer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E7A20760012007361BA /* libDeezer.a */; };
+		72E79E7E20760036007361BA /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E7D20760036007361BA /* CoreAudio.framework */; };
+		72E79E802076003D007361BA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E7F2076003D007361BA /* AudioToolbox.framework */; };
+		72E79E8220760045007361BA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E8120760045007361BA /* SystemConfiguration.framework */; };
+		72E79E8420760055007361BA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E8320760055007361BA /* MediaPlayer.framework */; };
+		72E79E8620760090007361BA /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E79E8520760090007361BA /* libicucore.A.dylib */; };
+		72E79E8A207602C1007361BA /* DeezerUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E79E89207602C1007361BA /* DeezerUser.m */; };
+		72E79E8D207607D2007361BA /* DeezerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E79E8C207607D2007361BA /* DeezerManager.m */; };
+		72E79E9020760827007361BA /* DeezerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E79E8F20760827007361BA /* DeezerPlayer.m */; };
+		72E79E932076086A007361BA /* DeezerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E79E922076086A007361BA /* DeezerSession.m */; };
+		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
+		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
+		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
+		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
+		B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
+		B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
+		B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
+		B5693E921FABD46800307FA4 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
+		B56AC1081E417996005C22D6 /* kernel-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B56AC1071E417996005C22D6 /* kernel-manifest.json */; };
+		B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */; };
+		B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
+		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
+		E6283EBF90F849F981446489 /* libreactnativeuilib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE503D73B84547B98AB75B /* libreactnativeuilib.a */; };
+		EBB8117C1BFA0514F79CAF74 /* libPods-music-room-client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-music-room-client.a */; };
+		F85884A6A74744758D484F7F /* libReactNativeControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D894DEEBDDF6413983A78495 /* libReactNativeControllers.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72E79E9A20761047007361BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5365AAB71091494E9C96D406 /* ReactNativeControllers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeControllers;
+		};
+		72E79E9D20761047007361BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79CA51A5926B452298AAD7C7 /* reactnativeuilib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8D93E6420161A7F00A39331;
+			remoteInfo = reactnativeuilib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2C1548D9E4CB1AEFA5CCAE6D /* Pods-music-room-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-room-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-music-room-client/Pods-music-room-client.debug.xcconfig"; sourceTree = "<group>"; };
+		3ACE503D73B84547B98AB75B /* libreactnativeuilib.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libreactnativeuilib.a; sourceTree = "<group>"; };
+		5365AAB71091494E9C96D406 /* ReactNativeControllers.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeControllers.xcodeproj; path = "../node_modules/react-native-controllers/ios/ReactNativeControllers.xcodeproj"; sourceTree = "<group>"; };
+		72E79E5A20760012007361BA /* DZRResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DZRResources.bundle; sourceTree = "<group>"; };
+		72E79E5C20760012007361BA /* Deezer+Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Deezer+Compatibility.h"; sourceTree = "<group>"; };
+		72E79E5D20760012007361BA /* DeezerConnect+Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeezerConnect+Compatibility.h"; sourceTree = "<group>"; };
+		72E79E5E20760012007361BA /* DeezerConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerConnect.h; sourceTree = "<group>"; };
+		72E79E5F20760012007361BA /* DeezerRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerRequestDelegate.h; sourceTree = "<group>"; };
+		72E79E6020760012007361BA /* DZRAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRAlbum.h; sourceTree = "<group>"; };
+		72E79E6120760012007361BA /* DZRArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRArtist.h; sourceTree = "<group>"; };
+		72E79E6220760012007361BA /* DZRCancelable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRCancelable.h; sourceTree = "<group>"; };
+		72E79E6320760012007361BA /* DZRComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRComment.h; sourceTree = "<group>"; };
+		72E79E6420760012007361BA /* DZREditorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZREditorial.h; sourceTree = "<group>"; };
+		72E79E6520760012007361BA /* DZREpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZREpisode.h; sourceTree = "<group>"; };
+		72E79E6620760012007361BA /* DZRFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRFolder.h; sourceTree = "<group>"; };
+		72E79E6720760012007361BA /* DZRGenericCancelable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRGenericCancelable.h; sourceTree = "<group>"; };
+		72E79E6820760012007361BA /* DZRGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRGenre.h; sourceTree = "<group>"; };
+		72E79E6920760012007361BA /* DZRManagedRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRManagedRadio.h; sourceTree = "<group>"; };
+		72E79E6A20760012007361BA /* DZRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRModel.h; sourceTree = "<group>"; };
+		72E79E6B20760012007361BA /* DZRNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRNetworkRequest.h; sourceTree = "<group>"; };
+		72E79E6C20760012007361BA /* DZRObject+Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DZRObject+Compatibility.h"; sourceTree = "<group>"; };
+		72E79E6D20760012007361BA /* DZRObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRObject.h; sourceTree = "<group>"; };
+		72E79E6E20760012007361BA /* DZRObjectList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRObjectList.h; sourceTree = "<group>"; };
+		72E79E6F20760012007361BA /* DZRPlayableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRPlayableArray.h; sourceTree = "<group>"; };
+		72E79E7020760012007361BA /* DZRPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRPlayer.h; sourceTree = "<group>"; };
+		72E79E7120760012007361BA /* DZRPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRPlaylist.h; sourceTree = "<group>"; };
+		72E79E7220760012007361BA /* DZRPodcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRPodcast.h; sourceTree = "<group>"; };
+		72E79E7320760012007361BA /* DZRRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRRadio.h; sourceTree = "<group>"; };
+		72E79E7420760012007361BA /* DZRRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRRequestManager.h; sourceTree = "<group>"; };
+		72E79E7520760012007361BA /* DZRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRTrack.h; sourceTree = "<group>"; };
+		72E79E7620760012007361BA /* DZRUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRUser.h; sourceTree = "<group>"; };
+		72E79E7720760012007361BA /* NSBundle+DZRBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DZRBundle.h"; sourceTree = "<group>"; };
+		72E79E7820760012007361BA /* NSError+DZRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DZRModel.h"; sourceTree = "<group>"; };
+		72E79E7920760012007361BA /* NSError+DZRPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DZRPlayer.h"; sourceTree = "<group>"; };
+		72E79E7A20760012007361BA /* libDeezer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDeezer.a; sourceTree = "<group>"; };
+		72E79E7D20760036007361BA /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		72E79E7F2076003D007361BA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		72E79E8120760045007361BA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		72E79E8320760055007361BA /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		72E79E8520760090007361BA /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = ../../../../../usr/lib/libicucore.A.dylib; sourceTree = "<group>"; };
+		72E79E88207602A2007361BA /* DeezerUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerUser.h; sourceTree = "<group>"; };
+		72E79E89207602C1007361BA /* DeezerUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeezerUser.m; sourceTree = "<group>"; };
+		72E79E8B207607AF007361BA /* DeezerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerManager.h; sourceTree = "<group>"; };
+		72E79E8C207607D2007361BA /* DeezerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeezerManager.m; sourceTree = "<group>"; };
+		72E79E8E2076080D007361BA /* DeezerPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerPlayer.h; sourceTree = "<group>"; };
+		72E79E8F20760827007361BA /* DeezerPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeezerPlayer.m; sourceTree = "<group>"; };
+		72E79E912076084B007361BA /* DeezerSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerSession.h; sourceTree = "<group>"; };
+		72E79E922076086A007361BA /* DeezerSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeezerSession.m; sourceTree = "<group>"; };
+		79CA51A5926B452298AAD7C7 /* reactnativeuilib.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = reactnativeuilib.xcodeproj; path = "../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib.xcodeproj"; sourceTree = "<group>"; };
+		A47FE4D7F70906B7DC8CE39B /* Pods-music-room-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-room-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-music-room-client/Pods-music-room-client.release.xcconfig"; sourceTree = "<group>"; };
+		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
+		B56386411DB9693800A0598C /* music-room-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-room-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B56386661DB9994300A0598C /* EXSDKVersions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXSDKVersions.plist; sourceTree = "<group>"; };
+		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		B5693E8F1FABD46800307FA4 /* launch_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background_image.png; sourceTree = "<group>"; };
+		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
+		B56AC1071E417996005C22D6 /* kernel-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kernel-manifest.json"; sourceTree = "<group>"; };
+		B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXBuildConstants.plist; sourceTree = "<group>"; };
+		B5DB047E1F3A684600E91581 /* shell-app-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shell-app-manifest.json"; sourceTree = "<group>"; };
+		B5DB047F1F3A684600E91581 /* shell-app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shell-app.bundle"; sourceTree = "<group>"; };
+		C4A88D15726AD99E8A257BC7 /* libPods-music-room-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-music-room-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D894DEEBDDF6413983A78495 /* libReactNativeControllers.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeControllers.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B563863E1DB9693800A0598C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72E79E8620760090007361BA /* libicucore.A.dylib in Frameworks */,
+				72E79E8420760055007361BA /* MediaPlayer.framework in Frameworks */,
+				72E79E8220760045007361BA /* SystemConfiguration.framework in Frameworks */,
+				72E79E802076003D007361BA /* AudioToolbox.framework in Frameworks */,
+				72E79E7E20760036007361BA /* CoreAudio.framework in Frameworks */,
+				72E79E7C20760012007361BA /* libDeezer.a in Frameworks */,
+				EBB8117C1BFA0514F79CAF74 /* libPods-music-room-client.a in Frameworks */,
+				F85884A6A74744758D484F7F /* libReactNativeControllers.a in Frameworks */,
+				E6283EBF90F849F981446489 /* libreactnativeuilib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72E79E8520760090007361BA /* libicucore.A.dylib */,
+				72E79E8320760055007361BA /* MediaPlayer.framework */,
+				72E79E8120760045007361BA /* SystemConfiguration.framework */,
+				72E79E7F2076003D007361BA /* AudioToolbox.framework */,
+				72E79E7D20760036007361BA /* CoreAudio.framework */,
+				C4A88D15726AD99E8A257BC7 /* libPods-music-room-client.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		267842701CA9497E8FFE6B99 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5365AAB71091494E9C96D406 /* ReactNativeControllers.xcodeproj */,
+				79CA51A5926B452298AAD7C7 /* reactnativeuilib.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		5B29BC350A332C58878A9F13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C1548D9E4CB1AEFA5CCAE6D /* Pods-music-room-client.debug.xcconfig */,
+				A47FE4D7F70906B7DC8CE39B /* Pods-music-room-client.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		72E79E5920760012007361BA /* DeezerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				72E79E5A20760012007361BA /* DZRResources.bundle */,
+				72E79E5B20760012007361BA /* include */,
+				72E79E7A20760012007361BA /* libDeezer.a */,
+			);
+			path = DeezerSDK;
+			sourceTree = "<group>";
+		};
+		72E79E5B20760012007361BA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				72E79E5C20760012007361BA /* Deezer+Compatibility.h */,
+				72E79E5D20760012007361BA /* DeezerConnect+Compatibility.h */,
+				72E79E5E20760012007361BA /* DeezerConnect.h */,
+				72E79E5F20760012007361BA /* DeezerRequestDelegate.h */,
+				72E79E6020760012007361BA /* DZRAlbum.h */,
+				72E79E6120760012007361BA /* DZRArtist.h */,
+				72E79E6220760012007361BA /* DZRCancelable.h */,
+				72E79E6320760012007361BA /* DZRComment.h */,
+				72E79E6420760012007361BA /* DZREditorial.h */,
+				72E79E6520760012007361BA /* DZREpisode.h */,
+				72E79E6620760012007361BA /* DZRFolder.h */,
+				72E79E6720760012007361BA /* DZRGenericCancelable.h */,
+				72E79E6820760012007361BA /* DZRGenre.h */,
+				72E79E6920760012007361BA /* DZRManagedRadio.h */,
+				72E79E6A20760012007361BA /* DZRModel.h */,
+				72E79E6B20760012007361BA /* DZRNetworkRequest.h */,
+				72E79E6C20760012007361BA /* DZRObject+Compatibility.h */,
+				72E79E6D20760012007361BA /* DZRObject.h */,
+				72E79E6E20760012007361BA /* DZRObjectList.h */,
+				72E79E6F20760012007361BA /* DZRPlayableArray.h */,
+				72E79E7020760012007361BA /* DZRPlayer.h */,
+				72E79E7120760012007361BA /* DZRPlaylist.h */,
+				72E79E7220760012007361BA /* DZRPodcast.h */,
+				72E79E7320760012007361BA /* DZRRadio.h */,
+				72E79E7420760012007361BA /* DZRRequestManager.h */,
+				72E79E7520760012007361BA /* DZRTrack.h */,
+				72E79E7620760012007361BA /* DZRUser.h */,
+				72E79E7720760012007361BA /* NSBundle+DZRBundle.h */,
+				72E79E7820760012007361BA /* NSError+DZRModel.h */,
+				72E79E7920760012007361BA /* NSError+DZRPlayer.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		72E79E9420761047007361BA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D894DEEBDDF6413983A78495 /* libReactNativeControllers.a */,
+				3ACE503D73B84547B98AB75B /* libreactnativeuilib.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		72E79E9520761047007361BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72E79E9E20761047007361BA /* libreactnativeuilib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72E79E9720761047007361BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72E79E9B20761047007361BA /* libReactNativeControllers.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B56386381DB9693800A0598C = {
+			isa = PBXGroup;
+			children = (
+				72E79E922076086A007361BA /* DeezerSession.m */,
+				72E79E912076084B007361BA /* DeezerSession.h */,
+				72E79E8F20760827007361BA /* DeezerPlayer.m */,
+				72E79E8E2076080D007361BA /* DeezerPlayer.h */,
+				72E79E8C207607D2007361BA /* DeezerManager.m */,
+				72E79E8B207607AF007361BA /* DeezerManager.h */,
+				72E79E89207602C1007361BA /* DeezerUser.m */,
+				72E79E88207602A2007361BA /* DeezerUser.h */,
+				72E79E5920760012007361BA /* DeezerSDK */,
+				B56386431DB9693800A0598C /* music-room-client */,
+				B56386421DB9693800A0598C /* Products */,
+				5B29BC350A332C58878A9F13 /* Pods */,
+				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
+				267842701CA9497E8FFE6B99 /* Libraries */,
+				72E79E9420761047007361BA /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		B56386421DB9693800A0598C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B56386411DB9693800A0598C /* music-room-client.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B56386431DB9693800A0598C /* music-room-client */ = {
+			isa = PBXGroup;
+			children = (
+				B56386471DB9693800A0598C /* AppDelegate.h */,
+				B56386481DB9693800A0598C /* AppDelegate.m */,
+				B56386501DB9693800A0598C /* Assets.xcassets */,
+				B563865B1DB96A5E00A0598C /* Supporting */,
+			);
+			path = "music-room-client";
+			sourceTree = "<group>";
+		};
+		B563865B1DB96A5E00A0598C /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				B5693E8F1FABD46800307FA4 /* launch_background_image.png */,
+				B5693E901FABD46800307FA4 /* launch_icon.png */,
+				B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */,
+				B5DB047E1F3A684600E91581 /* shell-app-manifest.json */,
+				B5DB047F1F3A684600E91581 /* shell-app.bundle */,
+				B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */,
+				B56AC1071E417996005C22D6 /* kernel-manifest.json */,
+				B501732A1DC01252003445D9 /* EXShell.plist */,
+				B56386661DB9994300A0598C /* EXSDKVersions.plist */,
+				B563865C1DB96A5E00A0598C /* Info.plist */,
+				B563865E1DB96A5E00A0598C /* main.m */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B56386401DB9693800A0598C /* music-room-client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "music-room-client" */;
+			buildPhases = (
+				23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */,
+				B5722AD01DFB7E3F0084848F /* Prepare Expo */,
+				B563863D1DB9693800A0598C /* Sources */,
+				B563863E1DB9693800A0598C /* Frameworks */,
+				B563863F1DB9693800A0598C /* Resources */,
+				8D34C7FE3D99F20E5EA1B18A /* [CP] Embed Pods Frameworks */,
+				AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "music-room-client";
+			productName = "music-room-client";
+			productReference = B56386411DB9693800A0598C /* music-room-client.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B56386391DB9693800A0598C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 900;
+				ORGANIZATIONNAME = "650 Industries, Inc.";
+				TargetAttributes = {
+					B56386401DB9693800A0598C = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = C8D8QTF339;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B563863C1DB9693800A0598C /* Build configuration list for PBXProject "music-room-client" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B56386381DB9693800A0598C;
+			productRefGroup = B56386421DB9693800A0598C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 72E79E9720761047007361BA /* Products */;
+					ProjectRef = 5365AAB71091494E9C96D406 /* ReactNativeControllers.xcodeproj */;
+				},
+				{
+					ProductGroup = 72E79E9520761047007361BA /* Products */;
+					ProjectRef = 79CA51A5926B452298AAD7C7 /* reactnativeuilib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				B56386401DB9693800A0598C /* music-room-client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		72E79E9B20761047007361BA /* libReactNativeControllers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeControllers.a;
+			remoteRef = 72E79E9A20761047007361BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		72E79E9E20761047007361BA /* libreactnativeuilib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libreactnativeuilib.a;
+			remoteRef = 72E79E9D20761047007361BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B563863F1DB9693800A0598C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56AC1081E417996005C22D6 /* kernel-manifest.json in Resources */,
+				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
+				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
+				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
+				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
+				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
+				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
+				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
+				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
+				72E79E7B20760012007361BA /* DZRResources.bundle in Resources */,
+				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-music-room-client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D34C7FE3D99F20E5EA1B18A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-music-room-client/Pods-music-room-client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-music-room-client/Pods-music-room-client-resources.sh",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/api.amplitude.com.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaDomainValidationCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-music-room-client/Pods-music-room-client-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5722AD01DFB7E3F0084848F /* Prepare Expo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Expo";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -eo pipefail\n\npushd ${SRCROOT}/..\nvalue=$(cat ~/.expo/PATH)\nPATH=\"$PATH:$value\" exp prepare-detached-build --platform ios\npopd\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B563863D1DB9693800A0598C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72E79E9020760827007361BA /* DeezerPlayer.m in Sources */,
+				72E79E8D207607D2007361BA /* DeezerManager.m in Sources */,
+				B56386611DB96A5E00A0598C /* main.m in Sources */,
+				B56386491DB9693800A0598C /* AppDelegate.m in Sources */,
+				72E79E8A207602C1007361BA /* DeezerUser.m in Sources */,
+				72E79E932076086A007361BA /* DeezerSession.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B56386561DB9693800A0598C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B56386571DB9693800A0598C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B56386591DB9693800A0598C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-music-room-client.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C8D8QTF339;
+				INFOPLIST_FILE = "$(SRCROOT)/music-room-client/Supporting/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeezerSDK",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MusicRoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B563865A1DB9693800A0598C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-music-room-client.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C8D8QTF339;
+				INFOPLIST_FILE = "$(SRCROOT)/music-room-client/Supporting/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeezerSDK",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MusicRoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B563863C1DB9693800A0598C /* Build configuration list for PBXProject "music-room-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B56386561DB9693800A0598C /* Debug */,
+				B56386571DB9693800A0598C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "music-room-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B56386591DB9693800A0598C /* Debug */,
+				B563865A1DB9693800A0598C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B56386391DB9693800A0598C /* Project object */;
+}
