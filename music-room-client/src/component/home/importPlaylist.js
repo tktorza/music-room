@@ -11,52 +11,82 @@ import { getPlaylists, getPlaylistTracks } from '../../utils/deezerService.js'
 
 class ImportPlayList extends Component {
 
-  componentWillMount ()  { getPlaylists().then(playlistDeezer => { this.setState({playlistDeezer }) }) }
-
-  state = {
-    playlistDeezer: [],
-    listToImport: [],
-  }
-
-  render () {
-
-    const { user } = this.props
-    const { playlistDeezer, listToImport } = this.state
-
-    return (
-      <View flex paddingH-25 paddingT-120>
-    { !!playlistDeezer && playlistDeezer.length != 0 && (
-      playlistDeezer.map((e, key ) => {
-      return (
-        <View  key={key} style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Checkbox
-            checked={() => { listToImport.push(e); this.setState({listToImport}) }}
-            onValueChange={this.handleFirstCheckboxChange}
-            checked={false}
-          />
-          <Text>{e.title}</Text>
-          </View>
-      )
+  componentWillMount ()  { getPlaylists().then(playlistDeezer => {
+    const tmp = []
+    playlistDeezer.forEach(e => {
+      e.is =false
+      tmp.push(e)
     })
 
-    )}
-      <Button kind='squared' onPress={() => { this.props.dispatch(importDeezerList(user.id, listToImport)) }} >{'Import'}</Button>
 
-      </View>
-    )
+    this.setState({playlistDeezer }) }) }
+
+    state = {
+      playlistDeezer: [],
+      listToImport: [],
+    }
+
+    isTrue = (e) => {
+      this.state.listToImport.forEach(obj => {
+        if (obj.title === e.title){
+          return true
+        }
+      })
+      return false
+    }
+
+    render () {
+
+      const { user } = this.props
+      const { playlistDeezer, listToImport } = this.state
+
+
+
+      return (
+        <View flex paddingH-25 paddingT-120>
+        { !!playlistDeezer && playlistDeezer.length != 0 && (
+          playlistDeezer.map((e, key ) => {
+            return (
+              <View  key={key} style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Checkbox
+              onValueChange={() => {
+                let index = listToImport.findIndex(obj => obj.title === e.title)
+                if(index === -1) {
+                  playlistDeezer[key].is = true
+                  listToImport.push(e);
+
+                } else {
+                  playlistDeezer[key].is = false
+
+                  listToImport.splice(index, 1)
+                }
+                this.setState({listToImport})
+              }}
+              checked={e.is}
+              />
+              <Text>{e.title}</Text>
+              </View>
+            )
+          })
+
+        )}
+        <Button kind='squared' onPress={() => { this.props.dispatch(importDeezerList(user.id, listToImport)) }} >{'Import'}</Button>
+
+        </View>
+      )
+    }
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    user: state.user.toJS(),
-    playlist: state.playlist.toJS(),
-    notife: state.notife.toJS(),
+  const mapStateToProps = state => {
+    return {
+      user: state.user.toJS(),
+      playlist: state.playlist.toJS(),
+      notife: state.notife.toJS(),
+    }
   }
-}
 
-const mapDispatchToProps = dispatch => {
-  return { dispatch }
-}
+  const mapDispatchToProps = dispatch => {
+    return { dispatch }
+  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportPlayList)
+  export default connect(mapStateToProps, mapDispatchToProps)(ImportPlayList)

@@ -10,8 +10,6 @@ const imporParams = '{playListArray}'
 
 const test = (list) => {
   return new Promise((resolve, reject) => {
-
-
     Playlist.findOne({ name: list.name }).then(u => {
       if (u) { reject('An playList already exist with this name.') }
 
@@ -218,10 +216,7 @@ export default class PlaylistController {
         playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'private') { arrayToSend.push(playList) } }) })
         playLists.forEach(playList => { playList.users.forEach(u => { if (playList.type === 'public') { arrayToSend.push(playList) } }) })
         playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'public') { arrayToSend.push(playList) } }) })
-        playLists.forEach(p => {
-          p.songs = _.sortBy(p.songs, ['grade'])
-
-        })
+        playLists.forEach(p => { p.songs = _.sortBy(p.songs, ['grade']) })
         return res.json({ message: 'Your playLists', playLists: arrayToSend }) /* istanbul ignore next */
       })
     })

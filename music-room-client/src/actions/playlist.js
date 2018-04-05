@@ -1,5 +1,6 @@
 import { callApi } from '../utils/callApi.js'
 import { Actions } from 'react-native-router-flux'
+import { getPlaylistTracks } from '../utils/deezerService.js'
 
 // import jwt from 'jsonwebtoken'
 
@@ -102,20 +103,43 @@ export function deleteAUser (playlistId, userId, userIdToDelete) {
     })
   }
 }
-
+//TODO mettre l'array de promise dans le bac
 export function importDeezerList(userId, data) {
-  console.log('data=>',data);
-  // return dispatch => {
-  //   callApi(`playlist/import/list/${userId}`,'post', data).then(body => {
-  //     dispatch({
-  //       type: 'http/updatePlaylist',
-  //       data: { body, playlistId },
-  //     })
-  //   }).catch(e => {
-  //     dispatch({
-  //       type: 'client/addNotife',
-  //       data: e,
-  //     })
-  //   })
-  // }
+  return dispatch => {
+  let pro = []
+  const ok = (e) => (
+    new Promise((resolve, reject) => {
+      getPlaylistTracks(e.id).then(toto => {
+
+         console.log('toot',toto);
+      //   const tmp = []
+      //   toto.forEach((obj, key) =>{
+      //     tmp.push({name: obj.title, id: obj.id, grade: key})
+      //   })
+      //   e.songs = tmp
+        resolve(e);
+      })
+    })
+  )
+  data.forEach(e => {
+    e.name = e.title
+    e.type = 'private'
+    pro.push(ok(e))
+  })
+//
+// Promise.all(pro).then(etc => {
+//   console.log(etc)
+// })
+//     callApi(`playlist/import/list/${userId}`,'post', data).then(body => {
+//       dispatch({
+//         type: 'http/updatePlaylist',
+//         data: { body, playlistId },
+//       })
+//     }).catch(e => {
+//       dispatch({
+//         type: 'client/addNotife',
+//         data: e,
+//       })
+//     })
+   }
 }
