@@ -10,3 +10,4 @@ doc
 jobs/config.js
 yarn.lock
 test.csv
+server/yarn*
