@@ -64,7 +64,7 @@ playTrackWrapper = (id) => {
 
     let index = songs.findIndex(e => e.id == currentSong)
     index += 1
-
+   if (index >= songs.length) { index = 0 }
     this.playTrackWrapper(songs[index].id)
 
   }
@@ -75,8 +75,12 @@ playTrackWrapper = (id) => {
     const index1 = playlist.playlists.findIndex(e => e._id === this.props.playlistId)
 
     const songs = playlist.playlists[index1].songs
-    const index = songs.findIndex(e => e.id == currentSong)
-    this.playTrackWrapper(songs[index - 1].id)
+    let index = songs.findIndex(e => e.id == currentSong)
+
+    index -= 1
+    if (index < 0) { index = 0 }
+
+    this.playTrackWrapper(songs[index].id)
 
 
   }

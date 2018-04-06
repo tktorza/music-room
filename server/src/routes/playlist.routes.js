@@ -127,7 +127,7 @@ nIqUE LA DocC
   },
   {
     method: 'POST',
-    path: 'playlist/import/list/:userId',
+    path: '/playlist/import/list/:userId',
     handler: PlaylistController.importPlayList,
     validator: [isLogin],
   },

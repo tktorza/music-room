@@ -14,14 +14,14 @@ class Home extends Component {
 
   componentWillMount () {
     Expo.SecureStore.getItemAsync('token', {}).then(token => {
-      this.props.dispatch({
+      return this.props.dispatch({
         type: 'client/verifeUser',
         data: token,
       })
     })
   }
   state = {
-    mode: 0,
+    mode: this.props.mode || 0,
   }
 
   serviceMode = () => { this.setState({ mode: 0 }) }

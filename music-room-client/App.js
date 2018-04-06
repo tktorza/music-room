@@ -9,6 +9,7 @@ import { reducer as formReducer } from 'redux-form'
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import App from './src/app.js'
 
+
 const configureStore = (reducer) => createStore(
   combineReducers({
     user: reducer.user,
@@ -24,7 +25,6 @@ const configureStore = (reducer) => createStore(
 )
 
 const store =  configureStore(reducer)
-
 
 class MusicRoom extends Component {
 

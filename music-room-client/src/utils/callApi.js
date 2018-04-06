@@ -13,21 +13,21 @@ export function callApi (endpoint, method = 'get', body, psw) {
           .send(body)
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
-          .then((res) => { const body = JSON.parse(res.text); resolve(body) })
+          .then((res) => { const body = JSON.parse(res.text); return resolve(body) })
           .catch(e => {
-            reject(e.response.body.message || e.message)
+            return reject(e.response.body.message || e.message)
           })
       }
       if (method === 'get') {
-        request.get(`${serverUrl}/${endpoint}`)
+        return request.get(`${serverUrl}/${endpoint}`)
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
           .set('X-Pass', psw)
           .then((res) => {
-            const body = JSON.parse(res.text); resolve(body)
+            const body = JSON.parse(res.text); return resolve(body)
           })
           .catch(e => {
-            reject(e.response.body.message || e.message)
+            return reject(e.response.body.message || e.message)
           })
       }
 
@@ -36,9 +36,9 @@ export function callApi (endpoint, method = 'get', body, psw) {
           .send(body)
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
-          .then((res) => { const body = JSON.parse(res.text); resolve(body) })
+          .then((res) => { const body = JSON.parse(res.text); return resolve(body) })
           .catch(e => {
-            reject(e.response.body.message || e.message)
+            return reject(e.response.body.message || e.message)
           })
       }
       if (method === 'delete') {
@@ -46,10 +46,10 @@ export function callApi (endpoint, method = 'get', body, psw) {
           .set('Accept', 'application/json')
           .set('X-Access-Token', token || '')
           .then(() => {
-            resolve({ message: 'Was deleted with success' })
+            return resolve({ message: 'Was deleted with success' })
           })
           .catch(e => {
-            reject(e.response.body.message || e.message)
+            return reject(e.response.body.message || e.message)
           })
       }
     })

@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
-import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, ScrollView, TouchableOpacity, View, Text } from 'react-native'
+
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { View, TextInput, Text, Button } from 'react-native-ui-lib'
 import { Actions } from 'react-native-router-flux'
-import { RadioGroup } from 'nachos-ui'
+import { RadioGroup, Button, Input } from 'nachos-ui'
 import { createPlayList } from '../../actions/playlist.js'
 import Toaster from '../toaster/index.js'
-import { getPlaylists, getPlaylistTracks } from '../../utils/deezerService.js'
+import { getPlaylists, getPlaylistTracks, checkSession } from '../../utils/deezerService.js'
 
 class NewPlaylist extends Component {
 
+  state = {
+    disab : false,
+  }
+  componentWillMount() {
+    checkSession(e => {
+      this.setState({disab: e})
+    })
+  }
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
-    <TextInput text50 placeholder={label} dark10 {...input} {...custom} secureTextEntry={secureTextEntry}/>
+
+    <Input
+      style={{ margin: 15 }}
+      placeholder={label}
+      {...input}
+      {...custom}
+    />
   )
   renderRadioGroup = ({ input, label, meta: { touched, error }, ...custom }) => (
     <RadioGroup
@@ -30,11 +44,18 @@ class NewPlaylist extends Component {
 
   render () {
 
-    const { handleSubmit } = this.props
+    const { handleSubmit, user } = this.props
+    const { disab } = this.state
 
     return (
-      <View flex paddingH-25 paddingT-120>
-        <Text blue50 text10>New track</Text>
+      <View
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+      }}>
+        <Text >New track</Text>
         <Field
           label={'Name'}
           name={'name'}
@@ -52,8 +73,8 @@ class NewPlaylist extends Component {
           component={this.renderRadioGroup}
         />
 
-        <Button onPress={ handleSubmit(this.onSubmit) } label='Create'/>
-        <Button onPress={() => { Actions.importList() }} label='Import Play list'/>
+        <Button onPress={ handleSubmit(this.onSubmit) }>Create</Button>
+        <Button disabled={!disab} onPress={() => { Actions.importList() }}>Import Play list</Button>
         {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>

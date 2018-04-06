@@ -49,6 +49,7 @@ class ImportPlayList extends Component {
             return (
               <View  key={key} style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
               <Checkbox
+              
               onValueChange={() => {
                 let index = listToImport.findIndex(obj => obj.title === e.title)
                 if(index === -1) {
