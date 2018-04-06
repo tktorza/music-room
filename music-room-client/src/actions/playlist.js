@@ -2,7 +2,6 @@ import { callApi } from '../utils/callApi.js'
 import { Actions } from 'react-native-router-flux'
 import { getPlaylistTracks } from '../utils/deezerService.js'
 
-
 export function getPlayList (userId) {
   return dispatch => {
     callApi(`playlist/all/${userId}/`, 'get').then(body => {
@@ -103,7 +102,7 @@ export function deleteAUser (playlistId, userId, userIdToDelete) {
   }
 }
 
-export function importDeezerList(userId, playListArray) {
+export function importDeezerList (userId, playListArray) {
 
   return dispatch => {
 
@@ -111,7 +110,7 @@ export function importDeezerList(userId, playListArray) {
       e.name = e.title
       e.type = 'private'
     })
-    callApi(`playlist/import/list/${userId}`,'post',{playListArray}).then(body => {
+    callApi(`playlist/import/list/${userId}`, 'post', { playListArray }).then(body => {
       return dispatch({
         type: 'http/getAllplayList',
         data: body,

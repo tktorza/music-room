@@ -12,7 +12,6 @@ import { Icon } from 'react-native-elements'
 import Toaster from '../toaster/index.js'
 import { playTrack, pause, play } from '../../utils/deezerService.js'
 
-
 const soundObject = new Expo.Audio.Sound()
 
 class Playlist extends Component {
@@ -29,8 +28,7 @@ class Playlist extends Component {
 
 playTrackWrapper = (id) => {
   const { isPlaying } = this.state
-  if (isPlaying) { playTrack(id).then((e) => { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id}) }) })}
-  else { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id}) }) }
+  if (isPlaying) { playTrack(id).then((e) => { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id }) }) }) } else { playTrack(id).then((e) => { this.setState({ isPlaying: true, currentSong: id }) }) }
 }
   callDezzerapi = (value) => {
     this.setState({ value })
@@ -47,10 +45,7 @@ playTrackWrapper = (id) => {
       const index1 = playlist.playlists.findIndex(e => e._id === this.props.playlistId)
       const song = playlist.playlists[index1].songs[0]
       this.playTrackWrapper(song.id)
-    } else {
-
-    if (!isPlaying) { this.setState({ isPlaying: !isPlaying }); play() } else { this.setState({ isPlaying: !isPlaying }); pause() }
-  }
+    } else if (!isPlaying) { this.setState({ isPlaying: !isPlaying }); play() } else { this.setState({ isPlaying: !isPlaying }); pause() }
   }
 
   nextSong = () => {
@@ -62,9 +57,9 @@ playTrackWrapper = (id) => {
 
     const songs = playlist.playlists[index1].songs
 
-    let index = songs.findIndex(e => e.id == currentSong)
+    let index = songs.findIndex(e => e.id === currentSong)
     index += 1
-   if (index >= songs.length) { index = 0 }
+    if (index >= songs.length) { index = 0 }
     this.playTrackWrapper(songs[index].id)
 
   }
@@ -75,13 +70,12 @@ playTrackWrapper = (id) => {
     const index1 = playlist.playlists.findIndex(e => e._id === this.props.playlistId)
 
     const songs = playlist.playlists[index1].songs
-    let index = songs.findIndex(e => e.id == currentSong)
+    let index = songs.findIndex(e => e.id === currentSong)
 
     index -= 1
     if (index < 0) { index = 0 }
 
     this.playTrackWrapper(songs[index].id)
-
 
   }
 

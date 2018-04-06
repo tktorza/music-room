@@ -9,7 +9,6 @@ import FacebookLogin from './facebookLogin.js'
 import Toaster from '../toaster/index.js'
 // import { connectDeezer, playTrack, checkSession } from '../../utils/deezerService.js'
 
-
 class Login extends Component {
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (

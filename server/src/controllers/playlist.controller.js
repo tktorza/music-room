@@ -13,43 +13,41 @@ const test = (list, id, email) => {
     Playlist.findOne({ name: list.name }).then(u => {
       if (u) { reject('An playList already exist with this name.') }
 
-
       request.get(`https://api.deezer.com/playlist/${list.id}`)
-      .set('Accept', 'application/json')
-      .then((res) => {
-        const body = JSON.parse(res.text);
-        if (body.error) { resolve() }
-        const tmp = []
+        .set('Accept', 'application/json')
+        .then((res) => {
+          const body = JSON.parse(res.text)
+          if (body.error) { resolve() }
+          const tmp = []
 
-        if(body && body.tracks && body.tracks.data) {
-          body.tracks.data.forEach((t, key) => {
-            tmp.push({id: t.id, name: t.title, grade: key})
+          if (body && body.tracks && body.tracks.data) {
+            body.tracks.data.forEach((t, key) => {
+              tmp.push({ id: t.id, name: t.title, grade: key })
+            })
+          }
+
+          const playList = new Playlist({
+            name: list.name,
+            description: list.description,
+            type: 'public',
+            users: [{ id, role: 'RW', email, super: true }],
+            songs: tmp,
           })
-        }
 
-        const playList = new Playlist({
-          name: list.name,
-          description: list.description,
-          type: 'public',
-          users: [{id, role: 'RW', email, super: true}],
-          songs: tmp,
+          playList.save(err => {
+            if (err) { reject('internal serveur error') }
+            resolve()
+          })
         })
+        .catch(e => {
+          console.log(e)
 
-        playList.save(err => {
-          if (err) { reject('internal serveur error') }
-          resolve()
+          return reject(e.response.body.message || e.message)
         })
-      })
-      .catch(e => {
-        console.log(e);
-
-
-        return reject(e.response.body.message || e.message) })
 
     })
   })
 }
-
 
 export default class PlaylistController {
 
@@ -224,10 +222,10 @@ export default class PlaylistController {
     })
   }
 
-  static importPlayList(req, res) {
+  static importPlayList (req, res) {
     const playListArray = req.body.playListArray
     const promiseArra = []
-    User.findOne({_id: req.params.userId}).then(user => {
+    User.findOne({ _id: req.params.userId }).then(user => {
 
       if (!user) { return res.status(404).send({ message: 'User not found' }) }
 
@@ -245,6 +243,6 @@ export default class PlaylistController {
         })
       })
     })
-    }
+  }
 
 }

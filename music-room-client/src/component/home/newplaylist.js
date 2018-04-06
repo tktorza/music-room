@@ -12,11 +12,11 @@ import { getPlaylists, getPlaylistTracks, checkSession } from '../../utils/deeze
 class NewPlaylist extends Component {
 
   state = {
-    disab : false,
+    disab: false,
   }
-  componentWillMount() {
+  componentWillMount () {
     checkSession(e => {
-      this.setState({disab: e})
+      this.setState({ disab: e })
     })
   }
   renderTextField = ({ input, label, meta: { touched, error }, ...custom, secureTextEntry }) => (
@@ -49,12 +49,12 @@ class NewPlaylist extends Component {
 
     return (
       <View
-      style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-      }}>
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+        }}>
         <Text >New track</Text>
         <Field
           label={'Name'}

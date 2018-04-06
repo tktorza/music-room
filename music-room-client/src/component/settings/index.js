@@ -15,19 +15,19 @@ class Settings extends Component {
     const { handleSubmit } = this.props
 
     return (
-      <View style={{height: '90%', width: '100%' }}>
-      <ScrollView style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-      }}>
-        <Text style={{ marginBottom: 20 }}>{'Publique information'}</Text>
-        <Public />
-        <Text style={{ marginTop: 20, marginBottom: 20 }}>{'Private information'}</Text>
-        <Private />
-        <DeezerLogin />
-      </ScrollView>
+      <View style={{ height: '90%', width: '100%' }}>
+        <ScrollView style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+        }}>
+          <Text style={{ marginBottom: 20 }}>{'Publique information'}</Text>
+          <Public />
+          <Text style={{ marginTop: 20, marginBottom: 20 }}>{'Private information'}</Text>
+          <Private />
+          <DeezerLogin />
+        </ScrollView>
       </View>
 
     )
