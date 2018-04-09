@@ -53,6 +53,5 @@
 
 ## Todo
 * Music Track Vote
-* Share on facebook
 * Test the project
 * Make correction
