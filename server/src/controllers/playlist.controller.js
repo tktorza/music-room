@@ -11,7 +11,8 @@ const updateParamsPrivate = '{type,email}'
 const test = (list, id, email) => {
   return new Promise((resolve, reject) => {
     Playlist.findOne({ name: list.name }).then(u => {
-      if (u) { reject('An playList already exist with this name.') }
+      if (u) { return reject('An playList already exist with this name.') }
+      else {
 
       request.get(`https://api.deezer.com/playlist/${list.id}`)
         .set('Accept', 'application/json')
@@ -42,7 +43,7 @@ const test = (list, id, email) => {
         .catch(() => {
           return reject(e.response.body.message || e.message)
         })
-
+      }
     })
   })
 }

@@ -70,7 +70,7 @@ class AddNewUser extends Component {
             </View>)
           })
         )}
-        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
+  
 
       </View>
     )

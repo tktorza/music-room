@@ -97,13 +97,6 @@ class Playlist extends Component {
             </View>
           )}
         </View>
-        {!!playlist && !!playlist.playlists && playlist.playlists.length === 0 && (
-          <View>
-            <Text blue50 text10>{'You don\'t have any track'}</Text>
-            <Button onPress={() => { Actions.newplaylist() }} label='Create a track'/>
-
-          </View>
-        )}
       </View>
     )
   }

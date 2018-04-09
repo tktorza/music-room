@@ -43,12 +43,12 @@ class App extends Component {
             key='newplaylist'
             component={NewPlaylist}
             hideNavBar={false}
-            title='New track'
+            title='New Play-list'
           />
           <Scene key='editplaylist'
             component={EditPlaylist}
             hideNavBar={false}
-            title='track'
+            title='Play-list'
           />
           <Scene key='resetPass'
             component={ResetPass}

@@ -9,6 +9,7 @@ import { getPlayList } from '../../actions/playlist.js'
 import { toJS } from 'immutable'
 import Settings from '../settings/index.js'
 import Toaster from '../toaster/index.js'
+import MusicTrack from './musicTrack.js'
 
 class Home extends Component {
 
@@ -40,7 +41,7 @@ class Home extends Component {
       }}>
 
         {mode === 0 && (
-          <Text>{mode}</Text>
+          <MusicTrack />
         )}
         {mode === 1 && (
           <Playlist playlist={playlist} user={user}/>
