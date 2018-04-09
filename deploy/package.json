@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "shipit": "^1.0.2",
+    "shipit-cli": "^4.0.2",
+    "shipit-deploy": "^4.0.2"
+  }
+}

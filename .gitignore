@@ -1,8 +1,10 @@
-.DS_Store
+.S_Store
 clientV0/node_modules
 clientV0/android
 clientV0/ios
 server/node_modules
+deploy/node_modules
+deploy/yarn*
 npm-debug.log
 dist
 coverage
