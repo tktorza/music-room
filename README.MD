@@ -20,7 +20,7 @@
 * ```yarn fix```
 * ```cd ios && pod install```
 * ```expo start```
-*```open ios/music-room-client.xcworkspace/```
+* ```open ios/music-room-client.xcworkspace/```
 * Run simulateur in Xcode
 * Be patient.
 * GO!
