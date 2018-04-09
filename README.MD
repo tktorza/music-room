@@ -5,7 +5,7 @@
 # Installation
 
 * ```brew install mongodb```
-* ```brew install cocoapod```
+* ```brew install cocoapods```
 * ```brew install nodejs```
 * ```npm install -g yarn```
 * ```npm install -g expo```
@@ -19,7 +19,7 @@
 
 * ```yarn fix```
 * ```cd ios && pod install```
-* ```expo start```
+* ```exp start```
 * ```open ios/music-room-client.xcworkspace/```
 * Run simulateur in Xcode
 * Be patient.
