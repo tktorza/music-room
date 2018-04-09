@@ -11,14 +11,11 @@ export const createRouter = app => {
   const router = express.Router()
   routes.forEach(r => {
     router[r.method.toLowerCase()](r.path, async (req, res) => {
-      try {
-        for (const validator of r.validator) {
-          await validator(req, res)
-        }
-        await r.handler(req, res)
-      } catch (err) {
-        console.log(err)
+      for (const validator of r.validator) {
+        await validator(req, res)
       }
+      await r.handler(req, res)
+
     })
   })
 

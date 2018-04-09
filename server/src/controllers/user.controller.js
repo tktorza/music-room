@@ -3,18 +3,13 @@ import User from '../models/user.model'
 import { generateToken } from '../utils/token'
 import bcrypt from 'bcryptjs'
 import { send } from '../utils/sendEmail.js'
-import md5 from 'js-md5'
 import FB from 'fb'
 
 const createParams = '{email,password,firstName,lastName,url,bio}'
-const createParamsFacebook = '{access_token}'
 
 const updateParamsPublic = '{firstName,lastName,tags,musicTags,isPrivateInfo}'
 
 const updateParamsPrivate = '{newPassword,email}'
-
-const DZ = require('node-deezer')
-const deezer = new DZ()
 
 const createCode = () => {
   let str = ''
@@ -26,27 +21,12 @@ const createCode = () => {
 
 export default class UserController {
 
-  static test (req, res) {
-    console.log(req.query)
-
-    deezer.createSession('275462', '49ab00dbfafa0d19b44c21f95261f61a', req.query.code || 'frf633f3ffdefe016973fd48ebff7f44', (err, result) => {
-      console.log('err', err)
-      console.log('result1', result)
-      // res.json({ msg:'hello', access_token: result.accessToken })
-      res.send('<iframe scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=playlist&id=30595446" width="700" height="240"></iframe>')
-
-    })
-
-  }
   static facebookCreate (req, res) {
-    const params = filter(req.body, createParamsFacebook)
-    console.log(req.body.access_token)
+
     FB.setAccessToken(req.body.access_token.toString())
     FB.api('me', { fields: 'id,name,email,first_name,last_name', access_token: req.body.access_token.toString() }, ((fbRes) => {
-      console.log(fbRes.email)
       User.findOne({ email: fbRes.email }).then(u => {
         if (u) {
-          console.log('ici')
           if (u.isFaceBookLogin === true) {
             const token = generateToken(u)
             return res.json({ token })
@@ -68,7 +48,7 @@ export default class UserController {
           return res.json({ token })
         })
 
-      }).catch((e) => {
+      }).catch(() => {
         return res.status(500).send({ message: 'Internal serveur error' })
       })
     }))
@@ -86,7 +66,6 @@ export default class UserController {
 
       const email = params.email
       const tokenStr = createCode()
-      console.log(tokenStr)
       send('no-reply@musiroom.com', email, 'Account validation:', { code: tokenStr, name: params.firstName })
 
       const user = new User({
@@ -106,8 +85,7 @@ export default class UserController {
         const token = generateToken(user)
         return res.json({ token })
       }) /* istanbul ignore next */
-    }).catch(e => {
-      console.log(e)
+    }).catch(() => {
       return res.status(500).send({ message: 'Internal serveur error' })
     })
   }
@@ -205,7 +183,7 @@ export default class UserController {
       const email = req.params.email
       const tokenStr = createCode()
       send('no-reply@musiroom.com', email, 'Reset password:', { code: tokenStr, name: u.firstName })
-      User.findOneAndUpdate({ email }, { $set: { isPassWordReset: true, passwordResetCode: tokenStr } }).then(ut => {
+      User.findOneAndUpdate({ email }, { $set: { isPassWordReset: true, passwordResetCode: tokenStr } }).then(() => {
         res.json({ message: 'email send' })
       })
 

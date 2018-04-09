@@ -39,9 +39,7 @@ const test = (list, id, email) => {
             resolve()
           })
         })
-        .catch(e => {
-          console.log(e)
-
+        .catch(() => {
           return reject(e.response.body.message || e.message)
         })
 
@@ -70,7 +68,7 @@ export default class PlaylistController {
         if (err) { return res.status(500).send({ message: 'internal serveur error' }) }
         return res.json({ message: 'Your playList', playlist: playList })
       })
-    }).catch((e) => {
+    }).catch(() => {
       return res.status(500).send({ message: 'Internal serveur error' })
     })
   }
@@ -102,7 +100,7 @@ export default class PlaylistController {
       const arrayToSend = []
 
       playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'private') { arrayToSend.push(playList) } }) })
-      playLists.forEach(playList => { playList.users.forEach(u => { if (playList.type === 'public') { arrayToSend.push(playList) } }) })
+      playLists.forEach(playList => { if (playList.type === 'public') { arrayToSend.push(playList) } })
       playLists.forEach(p => {
         p.songs = _.sortBy(p.songs, ['grade'])
 
@@ -116,12 +114,8 @@ export default class PlaylistController {
 
       if (!playList) { return res.status(404).send({ message: 'No playList found' }) }
 
-      let test = false
       let index = -1
       playList.users.forEach((u, key) => {
-        if (u.id === req.params.userId && u.role === 'RW') {
-          test = true
-        }
         if (req.params.userIdToDelete.toString() === u.id) {
           index = key
         }
@@ -230,14 +224,14 @@ export default class PlaylistController {
       if (!user) { return res.status(404).send({ message: 'User not found' }) }
 
       playListArray.forEach(e => { promiseArra.push(test(e, user.id, user.email)) })
-      Promise.all(promiseArra).then(e => {
+      Promise.all(promiseArra).then(() => {
 
         Playlist.find().then(playLists => {
 
           const arrayToSend = []
 
           playLists.forEach(playList => { playList.users.forEach(u => { if (u.id === req.params.userId && playList.type === 'private') { arrayToSend.push(playList) } }) })
-          playLists.forEach(playList => { playList.users.forEach(u => { if (playList.type === 'public') { arrayToSend.push(playList) } }) })
+          playLists.forEach(playList => { if (playList.type === 'public') { arrayToSend.push(playList) } })
           playLists.forEach(p => { p.songs = _.sortBy(p.songs, ['grade']) })
           return res.json({ message: 'Your playLists', playLists: arrayToSend }) /* istanbul ignore next */
         })
