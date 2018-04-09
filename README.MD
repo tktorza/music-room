@@ -36,9 +36,17 @@
 # Test
 * make some test for the server
 
+
+# CI 
+* runner git-lab to run test on the serveur
+
+# Deploy
+* shipit to deploy to AWS EC2
+
+# Monnitoring
+* Pm2 && keymetrics
+
 ## Todo
-* swith to gitlab => CI/CA
-* AWS ec2 setup ngnix + load-balancer
 * Music Track Vote
 * Share on facebook
 * Test the project
