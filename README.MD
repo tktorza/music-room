@@ -46,6 +46,11 @@
 # Monnitoring
 * Pm2 && keymetrics
 
+# Benchmark
+* Siege
+* siege -c 50 ``adresse:80/users`` (ec2 adresse)
+* Open htop on server and keymetrics
+
 ## Todo
 * Music Track Vote
 * Share on facebook
