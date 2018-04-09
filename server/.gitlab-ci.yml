@@ -10,4 +10,3 @@ test:
         - npm run test
     only:
         - master
-        - develop

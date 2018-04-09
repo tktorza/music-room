@@ -17,8 +17,8 @@ class Singup extends Component {
       placeholder={label}
       {...input}
       {...custom}
-    />
-  )
+    />)
+
   renderRadioGroup = ({ input, label, meta: { touched, error }, ...custom }) => (
     <RadioGroup
       style={{ margin: 15 }}
@@ -26,15 +26,11 @@ class Singup extends Component {
       options={['read', 'read&&write']}
     />
   )
-  onSubmit = event => {
-
-    this.props.dispatch(updateUserPrivate(event, this.props.user.id))
-
-  }
+  onSubmit = event => { this.props.dispatch(updateUserPrivate(event, this.props.user.id)) }
 
   render () {
 
-    const { handleSubmit } = this.props
+    const { handleSubmit, initialValues } = this.props
 
     return (
       <View style={{ flex: 1, width: '90%', alignSelf: 'center' }}>
@@ -50,7 +46,6 @@ class Singup extends Component {
           secureTextEntry={true}
         />
         <Button kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
-        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )
@@ -71,7 +66,7 @@ Singup = reduxForm({
 const mapStateToProps = state => {
   return {
     user: state.user.toJS(),
-    initialValues: state.user.toJS(),
+    initialValues: {},
     notife: state.notife.toJS(),
   }
 }

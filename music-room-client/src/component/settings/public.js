@@ -76,7 +76,6 @@ state = {
           component={this.renderRadioGroup}
         />
         <Button kind='squared' onPress={handleSubmit(this.onSubmit)}>Update</Button>
-        {this.props.notife.message !== '' && (<Toaster msg={this.props.notife.message} />)}
 
       </View>
     )

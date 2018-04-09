@@ -13,7 +13,12 @@ class Playlist extends Component {
 
     return (
       <View style={{ flex: 1 }}>
+
         <Text>{'HELLO'}</Text>
+
+
+
+
       </View>
     )
   }

@@ -12,8 +12,6 @@ class Settings extends Component {
 
   render () {
 
-    const { handleSubmit } = this.props
-
     return (
       <View style={{ height: '90%', width: '100%' }}>
         <ScrollView style={{

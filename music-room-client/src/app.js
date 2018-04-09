@@ -33,6 +33,7 @@ class App extends Component {
           />
           <Scene key='code'
             component={Code}
+            hideNavBar={false}
             title='Code'
           />
           <Scene key='home'
